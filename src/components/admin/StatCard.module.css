@@ -1,0 +1,567 @@
+/* ============================================================================
+   2. StatCard.module.css - Cartes de Statistiques
+   ============================================================================ */
+/* 
+.cardContainer {
+  background: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e7eb;
+  padding: 1.5rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.cardContainer:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
+}
+
+.cardContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cardInfo {
+  flex: 1;
+}
+
+.cardTitle {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+  margin: 0 0 0.25rem 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cardValue {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0.25rem 0;
+  line-height: 1.2;
+}
+
+.cardChange {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.changeValue {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.changePositive {
+  color: #059669;
+}
+
+.changeNegative {
+  color: #dc2626;
+}
+
+.changeLabel {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-left: 0.5rem;
+}
+
+.cardDescription {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0.25rem 0 0 0;
+}
+
+.cardIcon {
+  flex-shrink: 0;
+  padding: 0.75rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardIconBlue {
+  background-color: #3b82f6;
+}
+
+.cardIconGreen {
+  background-color: #10b981;
+}
+
+.cardIconYellow {
+  background-color: #f59e0b;
+}
+
+.cardIconRed {
+  background-color: #ef4444;
+}
+
+.cardIconPurple {
+  background-color: #8b5cf6;
+}
+
+.cardIconIndigo {
+  background-color: #6366f1;
+}
+
+.iconSvg {
+  height: 1.5rem;
+  width: 1.5rem;
+  color: #ffffff;
+} */
+
+/* ===== VARIABLES CSS POUR STATCARD ===== */
+:root {
+  /* Couleurs pour les cartes */
+  --stat-card-blue: #3b82f6;
+  --stat-card-blue-light: #dbeafe;
+  --stat-card-green: #10b981;
+  --stat-card-green-light: #d1fae5;
+  --stat-card-orange: #f59e0b;
+  --stat-card-orange-light: #fef3c7;
+  --stat-card-red: #ef4444;
+  --stat-card-red-light: #fee2e2;
+  --stat-card-purple: #8b5cf6;
+  --stat-card-purple-light: #ede9fe;
+  --stat-card-indigo: #6366f1;
+  --stat-card-indigo-light: #e0e7ff;
+  
+  /* Ombres */
+  --stat-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --stat-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --stat-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --stat-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /* Transitions */
+  --stat-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --stat-transition-fast: all 0.15s ease-out;
+}
+
+/* ===== CONTAINER PRINCIPAL ===== */
+.cardContainer {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--stat-shadow-md);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: var(--stat-transition);
+  cursor: pointer;
+}
+
+.cardContainer:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--stat-shadow-xl);
+}
+
+.cardContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--stat-card-blue), var(--stat-card-purple));
+  opacity: 0;
+  transition: opacity var(--stat-transition-fast);
+}
+
+.cardContainer:hover::before {
+  opacity: 1;
+}
+
+/* ===== CONTENU DE LA CARTE ===== */
+.cardContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  z-index: 2;
+}
+
+.cardInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.cardTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #64748b;
+  margin: 0 0 0.75rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cardValue {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 1rem 0;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ===== CHANGEMENT/ÉVOLUTION ===== */
+.cardChange {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.changeValue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  transition: var(--stat-transition-fast);
+}
+
+.changeIcon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.changePositive {
+  background: rgba(16, 185, 129, 0.1);
+  color: #059669;
+}
+
+.changeNegative {
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+}
+
+.changeLabel {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+/* ===== DESCRIPTION ===== */
+.cardDescription {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ===== ICÔNE ===== */
+.cardIcon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  transition: var(--stat-transition);
+}
+
+.cardIcon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
+  opacity: 0;
+  transition: opacity var(--stat-transition-fast);
+}
+
+.cardContainer:hover .cardIcon::before {
+  opacity: 1;
+}
+
+.iconSvg {
+  width: 1.5rem;
+  height: 1.5rem;
+  position: relative;
+  z-index: 1;
+  transition: transform var(--stat-transition-fast);
+}
+
+.cardContainer:hover .iconSvg {
+  transform: scale(1.1);
+}
+
+/* ===== VARIANTES DE COULEURS ===== */
+.cardBlue::before {
+  background: linear-gradient(90deg, var(--stat-card-blue), #6366f1);
+}
+
+.cardIconBlue {
+  background: linear-gradient(135deg, var(--stat-card-blue), #6366f1);
+  color: white;
+}
+
+.cardGreen::before {
+  background: linear-gradient(90deg, var(--stat-card-green), #059669);
+}
+
+.cardIconGreen {
+  background: linear-gradient(135deg, var(--stat-card-green), #059669);
+  color: white;
+}
+
+.cardOrange::before {
+  background: linear-gradient(90deg, var(--stat-card-orange), #ea580c);
+}
+
+.cardIconOrange {
+  background: linear-gradient(135deg, var(--stat-card-orange), #ea580c);
+  color: white;
+}
+
+.cardRed::before {
+  background: linear-gradient(90deg, var(--stat-card-red), #dc2626);
+}
+
+.cardIconRed {
+  background: linear-gradient(135deg, var(--stat-card-red), #dc2626);
+  color: white;
+}
+
+.cardPurple::before {
+  background: linear-gradient(90deg, var(--stat-card-purple), #7c3aed);
+}
+
+.cardIconPurple {
+  background: linear-gradient(135deg, var(--stat-card-purple), #7c3aed);
+  color: white;
+}
+
+.cardIndigo::before {
+  background: linear-gradient(90deg, var(--stat-card-indigo), #4f46e5);
+}
+
+.cardIconIndigo {
+  background: linear-gradient(135deg, var(--stat-card-indigo), #4f46e5);
+  color: white;
+}
+
+/* ===== EFFET DE BRILLANCE SUBTIL ===== */
+.cardGlow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.cardContainer:hover .cardGlow {
+  left: 100%;
+}
+
+/* ===== ÉTAT DE CHARGEMENT ===== */
+.cardLoading {
+  pointer-events: none;
+}
+
+.loadingContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.loadingSkeleton,
+.loadingSkeletonSmall,
+.loadingSkeletonMini {
+  background: linear-gradient(
+    90deg,
+    #f1f5f9 25%,
+    #e2e8f0 50%,
+    #f1f5f9 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 0.375rem;
+}
+
+.loadingSkeleton {
+  height: 2.25rem;
+  width: 60%;
+}
+
+.loadingSkeletonSmall {
+  height: 1rem;
+  width: 80%;
+}
+
+.loadingSkeletonMini {
+  height: 0.75rem;
+  width: 40%;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .cardContainer {
+    padding: 1.25rem;
+  }
+  
+  .cardValue {
+    font-size: 1.875rem;
+  }
+  
+  .cardIcon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  
+  .iconSvg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardContainer {
+    padding: 1rem;
+  }
+  
+  .cardContent {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .cardIcon {
+    align-self: flex-end;
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .iconSvg {
+    width: 1rem;
+    height: 1rem;
+  }
+  
+  .cardValue {
+    font-size: 1.5rem;
+  }
+}
+
+/* ===== MODE SOMBRE ===== */
+[data-theme="dark"] .cardContainer {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .cardTitle {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .cardValue {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .cardDescription {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .changeLabel {
+  color: #64748b;
+}
+
+/* ===== ÉTATS DE FOCUS POUR L'ACCESSIBILITÉ ===== */
+.cardContainer:focus {
+  outline: 2px solid var(--stat-card-blue);
+  outline-offset: 2px;
+}
+
+/* ===== MODE HAUTE CONTRASTE ===== */
+@media (prefers-contrast: high) {
+  .cardContainer {
+    border-width: 2px;
+    border-color: #000;
+  }
+  
+  .cardTitle,
+  .cardValue,
+  .cardDescription {
+    color: #000;
+  }
+  
+  [data-theme="dark"] .cardTitle,
+  [data-theme="dark"] .cardValue,
+  [data-theme="dark"] .cardDescription {
+    color: #fff;
+  }
+}
+
+/* ===== MODE RÉDUCTION D'ANIMATIONS ===== */
+@media (prefers-reduced-motion: reduce) {
+  .cardContainer,
+  .cardIcon,
+  .iconSvg,
+  .changeValue,
+  .cardGlow {
+    transition: none;
+  }
+  
+  .cardContainer:hover {
+    transform: none;
+  }
+  
+  .cardGlow {
+    display: none;
+  }
+  
+  .loadingSkeleton,
+  .loadingSkeletonSmall,
+  .loadingSkeletonMini {
+    animation: none;
+    background: #e2e8f0;
+  }
+}
+
+/* ===== EFFET AU CLIC ===== */
+.cardContainer:active {
+  transform: translateY(-2px) scale(0.98);
+}
+
+/* ===== AMÉLIORATION DE LA LISIBILITÉ ===== */
+.cardValue {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== PATTERN DE FOND SUBTIL ===== */
+.cardContainer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}

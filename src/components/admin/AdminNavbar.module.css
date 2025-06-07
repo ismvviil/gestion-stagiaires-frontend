@@ -1,0 +1,953 @@
+/* ============================================================================
+   1. AdminNavbar.module.css - Navigation Admin
+   ============================================================================ */
+
+/* .navbarContainer {
+  background: #ffffff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.navbarWrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .navbarWrapper {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .navbarWrapper {
+    padding: 0 2rem;
+  }
+}
+
+.navbarContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.navbarLeft {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logoContainer {
+  flex-shrink: 0;
+}
+
+.logoTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.navigation {
+  display: none;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .navigation {
+    display: flex;
+  }
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  color: #6b7280;
+  border-bottom: 2px solid transparent;
+}
+
+.navItem:hover {
+  color: #111827;
+  background-color: #f3f4f6;
+}
+
+.navItemActive {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+  border-bottom-color: #3b82f6;
+}
+
+.navIcon {
+  height: 1.25rem;
+  width: 1.25rem;
+  margin-right: 0.5rem;
+}
+
+.navContent {
+  text-align: left;
+}
+
+.navLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.navDescription {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.navbarRight {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.adminBadge {
+  font-size: 0.875rem;
+  color: #6b7280;
+  padding: 0.5rem 1rem;
+  background-color: #f9fafb;
+  border-radius: 9999px;
+  border: 1px solid #e5e7eb;
+} */
+
+/* ===== VARIABLES HÉRITÉES DU DESIGN SYSTEM ===== */
+/* Les variables sont définies dans AdminLayout.module.css */
+
+/* ===== CONTAINER PRINCIPAL ===== */
+.navbarContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--admin-sidebar-width);
+  height: 100vh;
+  background: linear-gradient(135deg, var(--admin-primary-dark) 0%, var(--admin-primary) 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all var(--admin-transition-normal);
+  z-index: 1001;
+  box-shadow: var(--admin-shadow-xl);
+}
+
+.navbarContainer.collapsed {
+  width: var(--admin-sidebar-collapsed);
+}
+
+.navbarWrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbarContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 0;
+}
+
+/* ===== LOGO ET TOGGLE ===== */
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.toggleButton {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  padding: 0.75rem;
+  border-radius: var(--admin-radius-md);
+  cursor: pointer;
+  transition: all var(--admin-transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+}
+
+.toggleButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.logoContent {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logoIcon {
+  font-size: 2rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.logoTitle {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== NAVIGATION ÉTENDUE ===== */
+.navigation {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0 1rem;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--admin-radius-lg);
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: all var(--admin-transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.navItem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.navItem:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  transform: translateX(8px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.navItem:hover::before {
+  left: 100%;
+}
+
+.navItemActive {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.navItemActive::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 20%;
+  width: 4px;
+  height: 60%;
+  background: white;
+  border-radius: 0 2px 2px 0;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.navIcon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.navContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.navLabel {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.navDescription {
+  font-size: 0.875rem;
+  opacity: 0.7;
+}
+
+/* ===== NAVIGATION COLLAPSÉE ===== */
+.navigationCollapsed {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0 1rem;
+}
+
+.navItemCollapsed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border-radius: var(--admin-radius-lg);
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: all var(--admin-transition-fast);
+}
+
+.navItemCollapsed:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  transform: scale(1.1);
+}
+
+/* ===== SECTION DROITE ===== */
+.navbarRight {
+  margin-top: auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ===== RECHERCHE ===== */
+.searchContainer {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.25rem;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 3rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--admin-radius-lg);
+  color: white;
+  font-size: 0.95rem;
+  transition: all var(--admin-transition-fast);
+  backdrop-filter: blur(10px);
+}
+
+.searchInput::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.searchInput:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+/* ===== NOTIFICATIONS ===== */
+.notificationContainer {
+  position: relative;
+}
+
+.notificationButton {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  padding: 0.75rem;
+  border-radius: var(--admin-radius-md);
+  cursor: pointer;
+  transition: all var(--admin-transition-fast);
+  position: relative;
+  backdrop-filter: blur(10px);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notificationButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.notificationIcon {
+  font-size: 1.25rem;
+}
+
+.notificationBadge {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  background: #ef4444;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2s infinite;
+}
+
+.notificationDropdown {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: var(--admin-radius-lg);
+  box-shadow: var(--admin-shadow-xl);
+  margin-bottom: 0.5rem;
+  max-height: 400px;
+  overflow: hidden;
+  animation: slideUp 0.3s ease-out;
+}
+
+.notificationHeader {
+  padding: 1rem;
+  border-bottom: 1px solid var(--admin-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notificationHeader h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--admin-text-primary);
+}
+
+.notificationCount {
+  background: var(--admin-primary);
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--admin-radius-sm);
+}
+
+.notificationList {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.notificationItem {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--admin-border-light);
+  transition: background var(--admin-transition-fast);
+}
+
+.notificationItem:hover {
+  background: var(--admin-bg-tertiary);
+}
+
+.notificationDot {
+  width: 8px;
+  height: 8px;
+  background: var(--admin-primary);
+  border-radius: 50%;
+  margin-top: 0.5rem;
+  flex-shrink: 0;
+}
+
+.notificationContent p {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.875rem;
+  color: var(--admin-text-primary);
+}
+
+.notificationContent span {
+  font-size: 0.75rem;
+  color: var(--admin-text-muted);
+}
+
+.notificationFooter {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--admin-border);
+}
+
+.notificationFooter button {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--admin-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: var(--admin-radius-sm);
+  transition: background var(--admin-transition-fast);
+}
+
+.notificationFooter button:hover {
+  background: var(--admin-bg-tertiary);
+}
+
+/* ===== MENU UTILISATEUR ===== */
+.userMenu {
+  position: relative;
+}
+
+.userButton {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  padding: 0.75rem;
+  border-radius: var(--admin-radius-lg);
+  cursor: pointer;
+  transition: all var(--admin-transition-fast);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  backdrop-filter: blur(10px);
+}
+
+.userButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.userAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.userAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.userInitials {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.userInfo {
+  flex: 1;
+  text-align: left;
+  min-width: 0;
+}
+
+.userName {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.userRole {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chevronIcon {
+  font-size: 1rem;
+  transition: transform var(--admin-transition-fast);
+  opacity: 0.7;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* ===== DROPDOWN UTILISATEUR ===== */
+.userDropdown {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: var(--admin-radius-lg);
+  box-shadow: var(--admin-shadow-xl);
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  animation: slideUp 0.3s ease-out;
+}
+
+.dropdownHeader {
+  padding: 1.25rem;
+  background: linear-gradient(135deg, var(--admin-bg-tertiary), var(--admin-bg-secondary));
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.dropdownAvatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid white;
+  box-shadow: var(--admin-shadow-sm);
+  position: relative;
+}
+
+.dropdownAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dropdownInitials {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--admin-primary), var(--admin-accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.dropdownUserInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.dropdownUserName {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--admin-text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.dropdownUserEmail {
+  font-size: 0.875rem;
+  color: var(--admin-text-secondary);
+}
+
+.dropdownDivider {
+  height: 1px;
+  background: var(--admin-border);
+  margin: 0.5rem 0;
+}
+
+.dropdownMenu {
+  padding: 0.5rem;
+}
+
+.dropdownItem {
+  width: 100%;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--admin-radius-md);
+  cursor: pointer;
+  transition: all var(--admin-transition-fast);
+  color: var(--admin-text-primary);
+  font-size: 0.95rem;
+}
+
+.dropdownItem:hover {
+  background: var(--admin-bg-tertiary);
+  color: var(--admin-primary);
+}
+
+.dropdownIcon {
+  font-size: 1.1rem;
+  opacity: 0.7;
+}
+
+.logoutItem {
+  color: #ef4444;
+  margin-top: 0.5rem;
+}
+
+.logoutItem:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .navbarContainer {
+    transform: translateX(-100%);
+    transition: transform var(--admin-transition-normal);
+  }
+  
+  .navbarContainer.collapsed {
+    transform: translateX(0);
+    width: 100%;
+    z-index: 1002;
+  }
+  
+  .searchContainer {
+    display: none;
+  }
+  
+  .logoContainer {
+    justify-content: space-between;
+  }
+  
+  .navigation {
+    padding: 0 1.5rem;
+  }
+}
+
+/* ===== SCROLLBAR POUR LES DROPDOWNS ===== */
+.notificationList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.notificationList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.notificationList::-webkit-scrollbar-thumb {
+  background: var(--admin-border);
+  border-radius: 3px;
+}
+
+.notificationList::-webkit-scrollbar-thumb:hover {
+  background: var(--admin-text-muted);
+}
+
+/* ===== ÉTATS DE FOCUS POUR L'ACCESSIBILITÉ ===== */
+.toggleButton:focus,
+.userButton:focus,
+.notificationButton:focus,
+.searchInput:focus,
+.dropdownItem:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+
+.navItem:focus,
+.navItemCollapsed:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+  border-radius: var(--admin-radius-lg);
+}
+
+/* ===== MODE HAUTE CONTRASTE ===== */
+@media (prefers-contrast: high) {
+  .navbarContainer {
+    border-right: 2px solid white;
+  }
+  
+  .navItem,
+  .navItemCollapsed {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .navItemActive {
+    border: 2px solid white;
+  }
+}
+
+/* ===== MODE RÉDUCTION D'ANIMATIONS ===== */
+@media (prefers-reduced-motion: reduce) {
+  .navbarContainer,
+  .navItem,
+  .userButton,
+  .toggleButton,
+  .notificationButton,
+  .chevronIcon,
+  .userDropdown,
+  .notificationDropdown {
+    transition: none;
+  }
+  
+  .navItem::before {
+    display: none;
+  }
+  
+  .notificationBadge {
+    animation: none;
+  }
+  
+  .userDropdown,
+  .notificationDropdown {
+    animation: none;
+  }
+}
+
+/* ===== STYLES POUR LES TOOLTIPS (optionnel) ===== */
+.navItemCollapsed {
+  position: relative;
+}
+
+.navItemCollapsed:hover::after {
+  content: attr(title);
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--admin-text-primary);
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--admin-radius-sm);
+  font-size: 0.875rem;
+  white-space: nowrap;
+  margin-left: 0.5rem;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* ===== AMÉLIORATIONS VISUELLES SUPPLÉMENTAIRES ===== */
+.navbarContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+}
+
+.navbarContainer::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+/* ===== EFFET GLASSMORPHISM POUR LES ÉLÉMENTS INTERACTIFS ===== */
+.userButton,
+.notificationButton,
+.toggleButton,
+.searchInput {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ===== ANIMATION D'ENTRÉE POUR LA SIDEBAR ===== */
+.navbarContainer {
+  animation: slideInLeft 0.5s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ===== STYLES POUR L'INDICATEUR DE CONNEXION ===== */
+.userAvatar::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
+  background: #10b981;
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+}
+
+.dropdownAvatar::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  width: 14px;
+  height: 14px;
+  background: #10b981;
+  border: 3px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+}
+
+/* ===== STYLE POUR LE MODE SOMBRE (si implémenté) ===== */
+[data-theme="dark"] .userDropdown,
+[data-theme="dark"] .notificationDropdown {
+  background: var(--admin-bg-secondary);
+  border: 1px solid var(--admin-border);
+}
+
+[data-theme="dark"] .dropdownHeader {
+  background: linear-gradient(135deg, var(--admin-bg-tertiary), var(--admin-bg-secondary));
+}
+
+[data-theme="dark"] .dropdownUserName {
+  color: var(--admin-text-primary);
+}
+
+[data-theme="dark"] .dropdownUserEmail {
+  color: var(--admin-text-secondary);
+}
+
+[data-theme="dark"] .dropdownItem {
+  color: var(--admin-text-primary);
+}
+
+[data-theme="dark"] .notificationHeader h3 {
+  color: var(--admin-text-primary);
+}
+
+[data-theme="dark"] .notificationContent p {
+  color: var(--admin-text-primary);
+}

@@ -1,0 +1,256 @@
+/* Styles communs pour tous les dashboards */
+.loadingContainer, .errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+}
+
+.loadingSpinner {
+  width: 3rem;
+  height: 3rem;
+  border: 4px solid #f3f4f6;
+  border-top: 4px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.defaultDashboard {
+  padding: 2rem;
+  text-align: center;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 15px;
+  margin: 2rem;
+}
+
+.defaultDashboard h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.defaultDashboard p {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+
+.errorContainer {
+  background: #fee2e2;
+  border-radius: 15px;
+  padding: 3rem;
+  margin: 2rem;
+  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.1);
+}
+
+.errorContainer h2 {
+  color: #dc2626;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.errorContainer p {
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+/* Animation pour le spinner de chargement */
+.loadingContainer {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 15px;
+  margin: 2rem;
+  color: white;
+}
+
+.loadingContainer .loadingSpinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid white;
+}
+
+.loadingContainer p {
+  color: white;
+  font-size: 1.1rem;
+}
+
+
+
+/* Styles responsifs communs - à ajouter à chaque fichier CSS */
+
+@media (max-width: 1024px) {
+  .dashboardContainer {
+    padding: 1.5rem;
+  }
+  
+  .statsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  
+  .statCard {
+    padding: 1.5rem;
+  }
+  
+  .statValue {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboardContainer {
+    padding: 1rem;
+  }
+  
+  .welcomeSection {
+    padding: 1.5rem;
+  }
+  
+  .welcomeTitle {
+    font-size: 2rem !important;
+  }
+  
+  .welcomeSubtitle {
+    font-size: 1rem;
+  }
+  
+  .motivationCard {
+    padding: 1rem;
+    max-width: 100%;
+  }
+  
+  .motivationText {
+    font-size: 0.9rem;
+  }
+  
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .statCard {
+    padding: 1rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .statIcon {
+    padding: 0.75rem;
+  }
+  
+  .statValue {
+    font-size: 1.5rem;
+  }
+  
+  .contentGrid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+  
+  .chartSection, .actionsSection, .missionsSection, .tasksSection {
+    padding: 1.5rem;
+  }
+  
+  .chartWrapper {
+    height: 200px;
+  }
+  
+  .actionBtn {
+    padding: 0.75rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  
+  .inspirationCard, .footerContent, .tipCard, .insightCard {
+    padding: 1.5rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.3rem;
+  }
+  
+  .chartTitle, .actionsTitle, .missionsTitle, .tasksTitle {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboardContainer {
+    padding: 0.5rem;
+  }
+  
+  .welcomeSection {
+    padding: 1rem;
+    border-radius: 15px;
+  }
+  
+  .welcomeTitle {
+    font-size: 1.8rem !important;
+  }
+  
+  .motivationCard {
+    padding: 0.75rem;
+  }
+  
+  .motivationIcon {
+    font-size: 1.5rem;
+  }
+  
+  .statCard {
+    padding: 0.75rem;
+  }
+  
+  .statIcon {
+    padding: 0.5rem;
+  }
+  
+  .statIcon svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  .statValue {
+    font-size: 1.3rem;
+  }
+  
+  .statLabel {
+    font-size: 0.8rem;
+  }
+  
+  .statDescription {
+    font-size: 0.75rem;
+  }
+  
+  .chartSection, .actionsSection, .missionsSection, .tasksSection {
+    padding: 1rem;
+  }
+  
+  .chartWrapper {
+    height: 180px;
+  }
+  
+  .inspirationCard, .footerContent, .tipCard, .insightCard {
+    padding: 1rem;
+  }
+  
+  .footerQuote, .inspirationText, .tipText, .insightText {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,380 @@
+/* TypingIndicator.module.css */
+
+.typingIndicator {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  margin: 0.5rem 0;
+  opacity: 0;
+  animation: slideInFade 0.3s ease-out forwards;
+  position: relative;
+}
+
+.typingContent {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 0.625rem 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  position: relative;
+  max-width: fit-content;
+}
+
+.typingContent::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -6px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-right-color: #f1f5f9;
+  border-bottom: none;
+  transform: rotate(45deg);
+}
+
+/* Container des points de frappe */
+.typingDots {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background-color: #6b7280;
+  border-radius: 50%;
+  animation: typingBounce 1.4s ease-in-out infinite;
+}
+
+.dot:nth-child(1) {
+  animation-delay: 0ms;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 200ms;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 400ms;
+}
+
+/* Texte de l'indicateur */
+.typingText {
+  font-size: 0.8125rem;
+  color: #6b7280;
+  font-style: italic;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Animations */
+@keyframes slideInFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes typingBounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
+}
+
+/* Animation de pulsation alternative */
+.typingContent.pulse .dot {
+  animation: typingPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes typingPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* Animation de vague */
+.typingContent.wave .dot {
+  animation: typingWave 1.8s ease-in-out infinite;
+}
+
+@keyframes typingWave {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    background-color: #6b7280;
+  }
+  25% {
+    transform: translateY(-4px) scale(1.1);
+    background-color: #3b82f6;
+  }
+  50% {
+    transform: translateY(-8px) scale(1.2);
+    background-color: #1d4ed8;
+  }
+  75% {
+    transform: translateY(-4px) scale(1.1);
+    background-color: #3b82f6;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .typingIndicator {
+    padding: 0.5rem 1rem;
+  }
+
+  .typingContent {
+    padding: 0.5rem 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .typingText {
+    font-size: 0.75rem;
+  }
+
+  .dot {
+    width: 5px;
+    height: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .typingIndicator {
+    padding: 0.375rem 0.75rem;
+  }
+
+  .typingContent {
+    padding: 0.375rem 0.625rem;
+    gap: 0.375rem;
+  }
+
+  .typingText {
+    font-size: 0.6875rem;
+  }
+
+  .dot {
+    width: 4px;
+    height: 4px;
+  }
+
+  .typingDots {
+    gap: 0.1875rem;
+  }
+}
+
+/* Variantes de couleur */
+.typingIndicator.primary .typingContent {
+  background-color: #eff6ff;
+  border-color: #dbeafe;
+}
+
+.typingIndicator.primary .dot {
+  background-color: #3b82f6;
+}
+
+.typingIndicator.primary .typingText {
+  color: #1e40af;
+}
+
+.typingIndicator.success .typingContent {
+  background-color: #ecfdf5;
+  border-color: #d1fae5;
+}
+
+.typingIndicator.success .dot {
+  background-color: #10b981;
+}
+
+.typingIndicator.success .typingText {
+  color: #047857;
+}
+
+/* Style compact */
+.typingIndicator.compact {
+  padding: 0.25rem 1rem;
+}
+
+.typingIndicator.compact .typingContent {
+  padding: 0.375rem 0.625rem;
+  gap: 0.5rem;
+}
+
+.typingIndicator.compact .dot {
+  width: 4px;
+  height: 4px;
+}
+
+.typingIndicator.compact .typingText {
+  font-size: 0.75rem;
+}
+
+/* Style minimal */
+.typingIndicator.minimal .typingContent {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0.25rem 0;
+}
+
+.typingIndicator.minimal .typingContent::after {
+  display: none;
+}
+
+/* Animation d'apparition en fade */
+.typingIndicator.fadeIn {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Animation de disparition */
+.typingIndicator.fadeOut {
+  animation: fadeOut 0.3s ease-in forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* Thème sombre */
+@media (prefers-color-scheme: dark) {
+  .typingContent {
+    background-color: #374151;
+    border-color: #4b5563;
+  }
+
+  .typingContent::after {
+    border-right-color: #374151;
+  }
+
+  .dot {
+    background-color: #9ca3af;
+  }
+
+  .typingText {
+    color: #d1d5db;
+  }
+
+  .typingIndicator.primary .typingContent {
+    background-color: #1e3a8a;
+    border-color: #1e40af;
+  }
+
+  .typingIndicator.primary .dot {
+    background-color: #60a5fa;
+  }
+
+  .typingIndicator.primary .typingText {
+    color: #93c5fd;
+  }
+
+  .typingIndicator.success .typingContent {
+    background-color: #064e3b;
+    border-color: #047857;
+  }
+
+  .typingIndicator.success .dot {
+    background-color: #6ee7b7;
+  }
+
+  .typingIndicator.success .typingText {
+    color: #a7f3d0;
+  }
+}
+
+/* Amélioration de l'accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  .typingIndicator,
+  .dot,
+  .typingContent {
+    animation: none;
+  }
+
+  .dot {
+    opacity: 0.6;
+  }
+}
+
+/* Support pour multiple utilisateurs */
+.typingIndicator.multiUser .typingText {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.typingIndicator.multiUser .dot {
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ef4444);
+  background-size: 200% 200%;
+  animation: typingBounce 1.4s ease-in-out infinite, 
+             gradientShift 3s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Position personnalisée */
+.typingIndicator.absolute {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  padding-top: 1.5rem;
+}
+
+/* Bulle avec avatar (optionnel) */
+.typingIndicator.withAvatar .typingContent {
+  margin-left: 2.75rem;
+  position: relative;
+}
+
+.typingIndicator.withAvatar::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);
+}

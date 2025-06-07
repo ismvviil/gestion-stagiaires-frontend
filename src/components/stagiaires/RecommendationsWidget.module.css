@@ -1,0 +1,946 @@
+/* ============================================================================
+   RECOMMENDATIONS WIDGET - CSS MODULE PROFESSIONNEL
+   Design moderne pour widget de recommandations du dashboard
+============================================================================ */
+
+/* Variables CSS pour thème cohérent */
+:root {
+  --primary-color: #3b82f6;
+  --primary-dark: #2563eb;
+  --primary-light: #dbeafe;
+  --secondary-color: #8b5cf6;
+  --secondary-dark: #7c3aed;
+  --secondary-light: #ede9fe;
+  --accent-color: #f59e0b;
+  --accent-dark: #d97706;
+  --accent-light: #fef3c7;
+  --success-color: #10b981;
+  --success-dark: #059669;
+  --success-light: #d1fae5;
+  --warning-color: #f59e0b;
+  --error-color: #ef4444;
+  --error-light: #fee2e2;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-light: #9ca3af;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  --border-color: #e5e7eb;
+  --border-light: #f3f4f6;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --border-radius: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ============================================================================
+   CONTENEUR WIDGET PRINCIPAL
+============================================================================ */
+
+.widgetContainer {
+  background: var(--bg-primary);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+  position: relative;
+  max-width: 100%;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition-slow);
+}
+
+.widgetContainer:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Barre d'accent en haut du widget */
+.widgetContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* ============================================================================
+   HEADER DU WIDGET
+============================================================================ */
+
+.widgetHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 1.5rem 1rem;
+  border-bottom: 1px solid var(--border-light);
+  background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+.headerIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border-radius: var(--border-radius-lg);
+  color: white;
+  font-size: 1.25rem;
+  box-shadow: var(--shadow-md);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.headerText {
+  flex: 1;
+}
+
+.widgetTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.25rem 0;
+  line-height: 1.2;
+}
+
+.widgetSubtitle {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.headerActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.refreshButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 1rem;
+}
+
+.refreshButton:hover {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  transform: scale(1.05);
+}
+
+.refreshButton:hover svg {
+  transform: rotate(180deg);
+}
+
+.refreshButton:active {
+  transform: scale(0.95);
+}
+
+/* ============================================================================
+   SECTION SCORE DU PROFIL
+============================================================================ */
+
+.profileScoreSection {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+  background: linear-gradient(135deg, var(--bg-secondary), #fafbff);
+}
+
+.scoreCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--bg-primary);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.scoreCard:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.scoreIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: linear-gradient(135deg, var(--secondary-color), var(--secondary-dark));
+  border-radius: var(--border-radius);
+  color: white;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.scoreContent {
+  flex: 1;
+  text-align: center;
+}
+
+.scoreValue {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.scoreLabel {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.scoreStatus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  flex-shrink: 0;
+}
+
+.statusGood {
+  color: var(--success-color);
+  font-size: 1.5rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.statusWarning {
+  color: var(--warning-color);
+  font-size: 1.5rem;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.improvementHint {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--accent-light);
+  border: 1px solid #fed7aa;
+  border-radius: var(--border-radius);
+  animation: slideInDown 0.3s ease-out;
+}
+
+.hintIcon {
+  font-size: 1.1rem;
+  color: var(--accent-dark);
+  flex-shrink: 0;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.hintText {
+  font-size: 0.85rem;
+  color: var(--accent-dark);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* ============================================================================
+   MESSAGES D'ERREUR
+============================================================================ */
+
+.errorMessage {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background: var(--error-light);
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  font-size: 0.9rem;
+  animation: slideInDown 0.3s ease-out;
+}
+
+.errorIcon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* ============================================================================
+   CONTENU DES RECOMMANDATIONS
+============================================================================ */
+
+.recommendationsContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.loadingContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  text-align: center;
+  gap: 1rem;
+}
+
+.loadingSpinner {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 3px solid var(--border-light);
+  border-top: 3px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loadingText {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ============================================================================
+   ÉTAT VIDE
+============================================================================ */
+
+.noRecommendations {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  flex: 1;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.emptyIcon {
+  font-size: 3rem;
+  color: var(--text-light);
+  opacity: 0.7;
+}
+
+.emptyText {
+  max-width: 200px;
+}
+
+.emptyTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.emptyDescription {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.emptyActions {
+  display: flex;
+  justify-content: center;
+}
+
+.completeProfileButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: var(--transition);
+  box-shadow: var(--shadow-md);
+}
+
+.completeProfileButton:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ============================================================================
+   LISTE DES RECOMMANDATIONS
+============================================================================ */
+
+.recommendationsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  flex: 1;
+}
+
+.recommendationItem {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-lg);
+  padding: 1.25rem;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.recommendationItem:hover {
+  background: var(--bg-primary);
+  border-color: var(--primary-color);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.recommendationItem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+  transform: scaleY(0);
+  transition: var(--transition);
+}
+
+.recommendationItem:hover::before {
+  transform: scaleY(1);
+}
+
+/* ============================================================================
+   HEADER DES ITEMS
+============================================================================ */
+
+.itemHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.itemInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.itemTitle {
+  margin: 0 0 0.375rem 0;
+}
+
+.titleLink {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: var(--transition);
+  display: inline-block;
+  line-height: 1.3;
+}
+
+.titleLink:hover {
+  color: var(--primary-color);
+  transform: translateX(2px);
+}
+
+.itemCompany {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.itemScore {
+  flex-shrink: 0;
+}
+
+.scoreChip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.375rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  min-width: 3rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Classes de couleur pour les scores */
+.scoreExcellent {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+}
+
+.scoreGood {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  color: white;
+}
+
+.scoreFair {
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
+  color: white;
+}
+
+.scorePoor {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+}
+
+/* ============================================================================
+   CONTENU DES ITEMS
+============================================================================ */
+
+.itemContent {
+  margin-bottom: 1rem;
+}
+
+.itemDetails {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.itemSector,
+.itemType {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.itemSeparator {
+  color: var(--text-light);
+  font-size: 0.8rem;
+}
+
+.itemReasons {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: var(--success-light);
+  border: 1px solid #a7f3d0;
+  border-radius: var(--border-radius);
+  position: relative;
+}
+
+.itemReasons::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--success-color);
+  border-radius: 0 0.125rem 0.125rem 0;
+}
+
+.reasonsIcon {
+  font-size: 0.9rem;
+  color: var(--success-color);
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.reasonsText {
+  font-size: 0.8rem;
+  color: var(--success-dark);
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+/* ============================================================================
+   ACTIONS DES ITEMS
+============================================================================ */
+
+.itemActions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.viewButton {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 1rem;
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: var(--transition);
+  flex: 1;
+  justify-content: center;
+}
+
+.viewButton:hover {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  border-color: var(--primary-color);
+  transform: translateY(-1px);
+}
+
+.applyButton {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: var(--transition);
+  flex: 1;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.applyButton:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ============================================================================
+   FOOTER DU WIDGET
+============================================================================ */
+
+.widgetFooter {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border-light);
+  background: var(--bg-secondary);
+}
+
+.viewAllButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: var(--transition);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.viewAllButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.viewAllButton:hover::before {
+  left: 100%;
+}
+
+.viewAllButton:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.buttonArrow {
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.viewAllButton:hover .buttonArrow {
+  transform: translateX(3px);
+}
+
+/* ============================================================================
+   ANIMATIONS
+============================================================================ */
+
+@keyframes shimmer {
+  0%, 100% {
+    background-position: -200% 0;
+  }
+  50% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1) rotate(180deg);
+    opacity: 0.8;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+============================================================================ */
+
+@media (max-width: 768px) {
+  .widgetHeader {
+    padding: 1.25rem 1.25rem 0.875rem;
+  }
+  
+  .headerLeft {
+    gap: 0.75rem;
+  }
+  
+  .headerIcon {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .widgetTitle {
+    font-size: 1.1rem;
+  }
+  
+  .widgetSubtitle {
+    font-size: 0.8rem;
+  }
+  
+  .profileScoreSection {
+    padding: 0.875rem 1.25rem;
+  }
+  
+  .scoreCard {
+    padding: 0.875rem;
+  }
+  
+  .scoreIcon {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 1rem;
+  }
+  
+  .scoreValue {
+    font-size: 1.25rem;
+  }
+  
+  .recommendationsList {
+    padding: 0.875rem 1.25rem;
+    gap: 0.625rem;
+  }
+  
+  .recommendationItem {
+    padding: 1rem;
+  }
+  
+  .itemHeader {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  
+  .itemScore {
+    align-self: flex-end;
+  }
+  
+  .widgetFooter {
+    padding: 0.875rem 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .widgetHeader {
+    padding: 1rem 1rem 0.75rem;
+  }
+  
+  .headerLeft {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .headerIcon {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 1rem;
+  }
+  
+  .widgetTitle {
+    font-size: 1rem;
+  }
+  
+  .profileScoreSection {
+    padding: 0.75rem 1rem;
+  }
+  
+  .recommendationsList {
+    padding: 0.75rem 1rem;
+  }
+  
+  .recommendationItem {
+    padding: 0.875rem;
+  }
+  
+  .itemActions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .widgetFooter {
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* ============================================================================
+   ACCESSIBILITÉ ET OPTIMISATIONS
+============================================================================ */
+
+/* Réduction des animations pour les utilisateurs sensibles */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .loadingSpinner {
+    animation: none;
+    border-top-color: var(--primary-color);
+  }
+}
+
+/* Mode sombre (support basique) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --text-light: #9ca3af;
+    --bg-primary: #1f2937;
+    --bg-secondary: #374151;
+    --bg-tertiary: #4b5563;
+    --border-color: #4b5563;
+    --border-light: #374151;
+  }
+}
+
+/* Focus states pour l'accessibilité */
+.titleLink:focus-visible,
+.viewButton:focus-visible,
+.applyButton:focus-visible,
+.viewAllButton:focus-visible,
+.completeProfileButton:focus-visible,
+.refreshButton:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Optimisations de performance */
+.widgetContainer,
+.recommendationItem {
+  will-change: transform;
+  contain: layout style paint;
+}
+
+/* Classes utilitaires */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

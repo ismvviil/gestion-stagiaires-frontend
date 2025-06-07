@@ -1,0 +1,402 @@
+/* OffreCard.module.css */
+
+.offreCard {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.offreCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  border-color: #d1d5db;
+}
+
+.offreCard.inactive {
+  opacity: 0.75;
+  background: #f9fafb;
+  border-color: #d1d5db;
+}
+
+.offreCard.inactive::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: #ef4444;
+}
+
+.offreHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.offreTitle {
+  margin: 0;
+  flex: 1;
+}
+
+.titleLink {
+  color: #1f2937;
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+  display: block;
+}
+
+.titleLink:hover {
+  color: #3b82f6;
+}
+
+.offreStatus {
+  flex-shrink: 0;
+}
+
+.statusBadge {
+  padding: 0.375rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.statusBadge.active {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.statusBadge.inactive {
+  background: #f3f4f6;
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+}
+
+.offreInfo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.infoLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.infoValue {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.offreDescription {
+  margin-bottom: 1.25rem;
+}
+
+.description {
+  margin: 0;
+  color: #4b5563;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.competences {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.competencesLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1d4ed8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.competencesText {
+  color: #1e40af;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.offreActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Boutons de base */
+.viewButton,
+.editButton,
+.closeButton,
+.publishButton,
+.deleteButton,
+.applyButton {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+}
+
+/* Bouton Voir détails */
+.viewButton {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.viewButton:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+/* Bouton Modifier */
+.editButton {
+  background: #ffffff;
+  color: #6b7280;
+  border: 1.5px solid #d1d5db;
+}
+
+.editButton:hover {
+  background: #f9fafb;
+  color: #374151;
+  border-color: #9ca3af;
+}
+
+/* Bouton Fermer */
+.closeButton {
+  background: #fef3c7;
+  color: #d97706;
+  border: 1.5px solid #fbbf24;
+}
+
+.closeButton:hover {
+  background: #fde68a;
+  color: #b45309;
+  border-color: #f59e0b;
+}
+
+/* Bouton Publier */
+.publishButton {
+  background: #dcfce7;
+  color: #16a34a;
+  border: 1.5px solid #4ade80;
+}
+
+.publishButton:hover {
+  background: #bbf7d0;
+  color: #15803d;
+  border-color: #22c55e;
+}
+
+/* Bouton Supprimer */
+.deleteButton {
+  background: #fee2e2;
+  color: #dc2626;
+  border: 1.5px solid #fca5a5;
+}
+
+.deleteButton:hover {
+  background: #fecaca;
+  color: #b91c1c;
+  border-color: #f87171;
+}
+
+/* Bouton Postuler */
+.applyButton {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  font-weight: 700;
+}
+
+.applyButton:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+
+/* Icônes pour les boutons */
+.viewButton::before {
+  content: "👁";
+}
+
+.editButton::before {
+  content: "✏️";
+}
+
+.closeButton::before {
+  content: "⏸";
+}
+
+.publishButton::before {
+  content: "📢";
+}
+
+.deleteButton::before {
+  content: "🗑";
+}
+
+.applyButton::before {
+  content: "📝";
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .offreCard {
+    padding: 1rem;
+  }
+
+  .offreHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .titleLink {
+    font-size: 1.125rem;
+  }
+
+  .offreInfo {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .offreActions {
+    flex-direction: column;
+  }
+
+  .viewButton,
+  .editButton,
+  .closeButton,
+  .publishButton,
+  .deleteButton,
+  .applyButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .offreCard {
+    padding: 0.75rem;
+  }
+
+  .titleLink {
+    font-size: 1rem;
+  }
+
+  .description {
+    font-size: 0.875rem;
+  }
+
+  .competencesText {
+    font-size: 0.8rem;
+  }
+}
+
+/* États focus pour l'accessibilité */
+.viewButton:focus-visible,
+.editButton:focus-visible,
+.closeButton:focus-visible,
+.publishButton:focus-visible,
+.deleteButton:focus-visible,
+.applyButton:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Animation d'entrée */
+.offreCard {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Effet de pulsation pour les nouvelles offres */
+.offreCard.new {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  }
+  50% {
+    box-shadow: 0 2px 12px rgba(59, 130, 246, 0.2);
+  }
+  100% {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  }
+}
+
+/* Indicateur visuel pour les offres fermées */
+.offreCard.inactive .titleLink {
+  color: #6b7280;
+}
+
+.offreCard.inactive .titleLink:hover {
+  color: #374151;
+}
+
+/* Amélioration des contrastes pour les petits textes */
+.infoLabel {
+  font-weight: 700;
+}
+
+.competencesLabel {
+  font-weight: 700;
+}

@@ -1,0 +1,965 @@
+/* ============================================================================
+   MARKET INSIGHTS DASHBOARD - CSS MODULE PROFESSIONNEL
+   Design moderne pour dashboard d'insights marché avec graphiques
+============================================================================ */
+
+/* Variables CSS pour thème cohérent */
+:root {
+  --primary-color: #3b82f6;
+  --primary-dark: #2563eb;
+  --primary-light: #dbeafe;
+  --secondary-color: #8b5cf6;
+  --secondary-dark: #7c3aed;
+  --secondary-light: #ede9fe;
+  --accent-color: #f59e0b;
+  --accent-dark: #d97706;
+  --accent-light: #fef3c7;
+  --success-color: #10b981;
+  --success-dark: #059669;
+  --success-light: #d1fae5;
+  --warning-color: #f59e0b;
+  --error-color: #ef4444;
+  --error-light: #fee2e2;
+  --teal-color: #14b8a6;
+  --teal-light: #ccfbf1;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-light: #9ca3af;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  --bg-chart: #fefefe;
+  --border-color: #e5e7eb;
+  --border-light: #f3f4f6;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --border-radius: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ============================================================================
+   CONTENEUR PRINCIPAL
+============================================================================ */
+
+.insightsDashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+@media (max-width: 768px) {
+  .insightsDashboard {
+    padding: 1rem;
+    gap: 2rem;
+  }
+}
+
+/* ============================================================================
+   EN-TÊTES DE SECTIONS
+============================================================================ */
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem 0;
+}
+
+.sectionIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border-radius: var(--border-radius-lg);
+  color: white;
+  font-size: 1.5rem;
+  box-shadow: var(--shadow-lg);
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.2;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+  
+  .sectionIcon {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.25rem;
+  }
+}
+
+/* ============================================================================
+   ÉTAT DE CHARGEMENT
+============================================================================ */
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+  gap: 1.5rem;
+  background: var(--bg-primary);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.loadingIcon {
+  font-size: 4rem;
+  color: var(--primary-color);
+  animation: spin 2s linear infinite;
+}
+
+.loadingContainer p {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ============================================================================
+   VUE D'ENSEMBLE
+============================================================================ */
+
+.overviewSection {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.overviewGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.statCard {
+  background: var(--bg-primary);
+  border-radius: var(--border-radius-xl);
+  padding: 2rem;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-light);
+  transition: var(--transition-slow);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.statCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.statCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--primary-color);
+}
+
+.statCard:hover::before {
+  opacity: 1;
+}
+
+.statIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  background: linear-gradient(135deg, var(--primary-light), #e0f2fe);
+  border-radius: var(--border-radius-lg);
+  color: var(--primary-color);
+  font-size: 2rem;
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.statCard:hover .statIcon {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  transform: scale(1.1);
+}
+
+.statContent {
+  flex: 1;
+}
+
+.statValue {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.statLabel {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
+}
+
+.statDescription {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.3;
+}
+
+@media (max-width: 768px) {
+  .overviewGrid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+  
+  .statCard {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+  
+  .statIcon {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
+  }
+  
+  .statValue {
+    font-size: 1.75rem;
+  }
+}
+
+/* ============================================================================
+   SECTION GRAPHIQUES
+============================================================================ */
+
+.chartsSection {
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.chartsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 2rem;
+}
+
+.chartCard {
+  background: var(--bg-chart);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+  transition: var(--transition-slow);
+  position: relative;
+}
+
+.chartCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+.chartCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  transform: scaleX(0);
+  transition: var(--transition);
+}
+
+.chartCard:hover::before {
+  transform: scaleX(1);
+}
+
+.chartHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(135deg, var(--bg-secondary), #fafbff);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.chartIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border-radius: var(--border-radius);
+  color: white;
+  font-size: 1.25rem;
+}
+
+.chartTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.chartContainer {
+  padding: 1.5rem 2rem 2rem;
+  background: var(--bg-chart);
+}
+
+@media (max-width: 1200px) {
+  .chartsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .chartsGrid {
+    gap: 1.5rem;
+  }
+  
+  .chartHeader {
+    padding: 1.25rem 1.5rem;
+  }
+  
+  .chartContainer {
+    padding: 1.25rem 1.5rem 1.75rem;
+  }
+  
+  .chartTitle {
+    font-size: 1.1rem;
+  }
+}
+
+/* ============================================================================
+   POSITION SUR LE MARCHÉ
+============================================================================ */
+
+.positionSection {
+  animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+.positionGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.positionCard {
+  background: var(--bg-primary);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+  transition: var(--transition-slow);
+}
+
+.positionCard:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-xl);
+}
+
+.positionHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(135deg, var(--secondary-light), #f0f4ff);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.positionIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: linear-gradient(135deg, var(--secondary-color), var(--secondary-dark));
+  border-radius: var(--border-radius);
+  color: white;
+  font-size: 1.25rem;
+}
+
+.positionTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.positionContent {
+  padding: 2rem;
+}
+
+/* Score de compétitivité */
+.competitivityScore {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.scoreCircle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 8rem;
+  height: 8rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border-radius: 50%;
+  color: white;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  flex-shrink: 0;
+}
+
+.scoreNumber {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.scoreLabel {
+  font-size: 0.8rem;
+  font-weight: 500;
+  opacity: 0.9;
+  margin-top: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.scoreInterpretation {
+  flex: 1;
+}
+
+.excellentScore,
+.goodScore,
+.improvementScore {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+}
+
+.excellentScore {
+  background: var(--success-light);
+  color: var(--success-dark);
+  border: 1px solid #a7f3d0;
+}
+
+.goodScore {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  border: 1px solid #bfdbfe;
+}
+
+.improvementScore {
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  border: 1px solid #fed7aa;
+}
+
+.excellentScore svg,
+.goodScore svg,
+.improvementScore svg {
+  font-size: 1.25rem;
+}
+
+/* Analyse concurrentielle */
+.competitionStats {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.competitionItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-light);
+  transition: var(--transition);
+}
+
+.competitionItem:hover {
+  background: var(--bg-primary);
+  border-color: var(--primary-color);
+  transform: translateX(3px);
+}
+
+.competitionLabel {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.competitionValue {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.lowCompetition {
+  color: var(--success-color) !important;
+}
+
+.moderateCompetition {
+  color: var(--accent-color) !important;
+}
+
+.highCompetition {
+  color: var(--error-color) !important;
+}
+
+/* Compétences uniques */
+.uniqueSkills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.uniqueSkillTag {
+  padding: 0.625rem 1.25rem;
+  background: linear-gradient(135deg, var(--success-light), #f0fff4);
+  color: var(--success-dark);
+  border: 1px solid #a7f3d0;
+  border-radius: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.uniqueSkillTag:hover {
+  background: linear-gradient(135deg, var(--success-color), var(--success-dark));
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.noUniqueSkills {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  text-align: center;
+  background: var(--bg-secondary);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-light);
+}
+
+.noSkillsIcon {
+  font-size: 2.5rem;
+  color: var(--text-light);
+}
+
+.noUniqueSkills p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .positionGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .positionHeader {
+    padding: 1.25rem 1.5rem;
+  }
+  
+  .positionContent {
+    padding: 1.5rem;
+  }
+  
+  .competitivityScore {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  
+  .scoreCircle {
+    width: 6rem;
+    height: 6rem;
+  }
+  
+  .scoreNumber {
+    font-size: 1.5rem;
+  }
+}
+
+/* ============================================================================
+   CONSEILS STRATÉGIQUES
+============================================================================ */
+
+.adviceSection {
+  animation: fadeInUp 0.6s ease-out 0.6s both;
+}
+
+.adviceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.adviceCard {
+  background: var(--bg-primary);
+  border-radius: var(--border-radius-xl);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-light);
+  transition: var(--transition-slow);
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.adviceCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+  transform: scaleY(0);
+  transition: var(--transition);
+}
+
+.adviceCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.adviceCard:hover::before {
+  transform: scaleY(1);
+}
+
+.adviceIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  background: linear-gradient(135deg, var(--accent-light), #fef7e0);
+  border: 1px solid #fed7aa;
+  border-radius: var(--border-radius-lg);
+  color: var(--accent-dark);
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.adviceCard:hover .adviceIcon {
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
+  color: white;
+  transform: scale(1.1);
+}
+
+.adviceContent {
+  flex: 1;
+}
+
+.adviceText {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .adviceGrid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  
+  .adviceCard {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+}
+
+/* ============================================================================
+   TENDANCES DU MARCHÉ
+============================================================================ */
+
+.trendsSection {
+  animation: fadeInUp 0.6s ease-out 0.8s both;
+}
+
+.trendsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.trendCard {
+  background: var(--bg-primary);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+  transition: var(--transition-slow);
+}
+
+.trendCard:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-xl);
+}
+
+.trendHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(135deg, var(--teal-light), #e0f7fa);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.trendIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: linear-gradient(135deg, var(--teal-color), #0f766e);
+  border-radius: var(--border-radius);
+  color: white;
+  font-size: 1.25rem;
+}
+
+.trendTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.trendList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 2rem;
+}
+
+.trendTag {
+  padding: 0.625rem 1.25rem;
+  background: linear-gradient(135deg, var(--primary-light), #e0f2fe);
+  color: var(--primary-dark);
+  border: 1px solid #bfdbfe;
+  border-radius: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: var(--transition);
+  cursor: default;
+}
+
+.trendTag:hover {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 768px) {
+  .trendsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .trendHeader {
+    padding: 1.25rem 1.5rem;
+  }
+  
+  .trendList {
+    padding: 1.5rem;
+  }
+}
+
+/* ============================================================================
+   ANIMATIONS
+============================================================================ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN AVANCÉ
+============================================================================ */
+
+@media (max-width: 1024px) {
+  .overviewGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .chartsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .insightsDashboard {
+    padding: 0.75rem;
+    gap: 1.5rem;
+  }
+  
+  .overviewGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .sectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.25rem;
+  }
+  
+  .statCard {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.25rem;
+  }
+  
+  .competitivityScore {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* ============================================================================
+   ACCESSIBILITÉ ET OPTIMISATIONS
+============================================================================ */
+
+/* Réduction des animations pour les utilisateurs sensibles */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mode sombre (support basique) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --text-light: #9ca3af;
+    --bg-primary: #1f2937;
+    --bg-secondary: #374151;
+    --bg-tertiary: #4b5563;
+    --bg-chart: #1f2937;
+    --border-color: #4b5563;
+    --border-light: #374151;
+  }
+}
+
+/* Focus states pour l'accessibilité */
+.trendTag:focus-visible,
+.uniqueSkillTag:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Optimisations de performance */
+.statCard,
+.chartCard,
+.positionCard,
+.adviceCard,
+.trendCard {
+  will-change: transform;
+  contain: layout style paint;
+}
+
+/* Classes utilitaires */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

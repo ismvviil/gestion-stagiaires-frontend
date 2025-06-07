@@ -1,0 +1,787 @@
+/* ============================================================================
+   PROFILE STATS CARD - CSS MODULE PROFESSIONNEL
+   Design moderne pour les statistiques du profil stagiaire
+============================================================================ */
+
+/* Variables CSS cohérentes avec le thème */
+.statsContainer {
+  --primary-color: #3b82f6;
+  --primary-hover: #2563eb;
+  --primary-light: #dbeafe;
+  --secondary-color: #8b5cf6;
+  --success-color: #10b981;
+  --success-light: #d1fae5;
+  --success-hover: #059669;
+  --warning-color: #f59e0b;
+  --warning-light: #fef3c7;
+  --warning-hover: #d97706;
+  --info-color: #06b6d4;
+  --info-light: #cffafe;
+  --info-hover: #0891b2;
+  --danger-color: #ef4444;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --border-color: #e2e8f0;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 12px 35px rgba(0, 0, 0, 0.2);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.2s ease;
+  --spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ============================================================================
+   CONTAINER PRINCIPAL
+============================================================================ */
+
+.statsContainer {
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.statsContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, var(--primary-color), var(--success-color), var(--warning-color), var(--info-color));
+  animation: gradientShift 8s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ============================================================================
+   HEADER DES STATISTIQUES
+============================================================================ */
+
+.statsHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid var(--bg-tertiary);
+  position: relative;
+}
+
+.statsHeader::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(135deg, var(--primary-color), var(--success-color));
+  border-radius: 1px;
+  animation: expandLine 1s ease-out;
+}
+
+@keyframes expandLine {
+  from { width: 0; }
+  to { width: 100px; }
+}
+
+.statsHeaderIcon {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.statsHeaderIcon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: iconShimmer 3s infinite;
+}
+
+@keyframes iconShimmer {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: -100%; }
+}
+
+.statsContainer:hover .statsHeaderIcon {
+  transform: scale(1.05) rotate(5deg);
+}
+
+.statsHeaderText {
+  flex: 1;
+}
+
+.statsTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.25rem 0;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.statsSubtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin: 0;
+  font-weight: 500;
+}
+
+/* ============================================================================
+   GRILLE DES STATISTIQUES
+============================================================================ */
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* ============================================================================
+   LIENS ET CARTES DE STATISTIQUES
+============================================================================ */
+
+.statLink {
+  text-decoration: none;
+  display: block;
+  transition: var(--transition);
+}
+
+.statLink:hover {
+  transform: translateY(-2px);
+}
+
+.statCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+
+.statCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--card-accent);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s var(--spring);
+}
+
+.statCard:hover::before {
+  transform: scaleY(1);
+}
+
+.statCard.clickable {
+  cursor: pointer;
+}
+
+.statCard.clickable:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--card-accent);
+}
+
+/* Styles pour les différents types de cartes */
+.statCard.primary {
+  --card-bg: linear-gradient(135deg, var(--bg-primary), var(--primary-light));
+  --card-border: #bfdbfe;
+  --card-accent: var(--primary-color);
+}
+
+.statCard.success {
+  --card-bg: linear-gradient(135deg, var(--bg-primary), var(--success-light));
+  --card-border: #a7f3d0;
+  --card-accent: var(--success-color);
+}
+
+.statCard.warning {
+  --card-bg: linear-gradient(135deg, var(--bg-primary), var(--warning-light));
+  --card-border: #fde68a;
+  --card-accent: var(--warning-color);
+}
+
+.statCard.info {
+  --card-bg: linear-gradient(135deg, var(--bg-primary), var(--info-light));
+  --card-border: #a5f3fc;
+  --card-accent: var(--info-color);
+}
+
+/* ============================================================================
+   ICÔNES DES STATISTIQUES
+============================================================================ */
+
+.statIcon {
+  width: 48px;
+  height: 48px;
+  background: var(--card-accent);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.statCard:hover .statIcon {
+  transform: scale(1.1) rotate(10deg);
+  box-shadow: var(--shadow-md);
+}
+
+.statCard.primary .statIcon {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+}
+
+.statCard.success .statIcon {
+  background: linear-gradient(135deg, var(--success-color), var(--success-hover));
+}
+
+.statCard.warning .statIcon {
+  background: linear-gradient(135deg, var(--warning-color), var(--warning-hover));
+}
+
+.statCard.info .statIcon {
+  background: linear-gradient(135deg, var(--info-color), var(--info-hover));
+}
+
+/* ============================================================================
+   CONTENU DES STATISTIQUES
+============================================================================ */
+
+.statContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.statValue {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.statNumber {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+  background: linear-gradient(135deg, var(--text-primary), var(--card-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: countUp 1s ease-out;
+}
+
+@keyframes countUp {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.statText {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--card-accent);
+}
+
+.trendIcon {
+  font-size: 1rem;
+  color: var(--success-color);
+  animation: trendPulse 2s infinite;
+}
+
+@keyframes trendPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.1); }
+}
+
+.statLabel {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================================================
+   ACTION DES STATISTIQUES
+============================================================================ */
+
+.statAction {
+  font-size: 1.125rem;
+  color: var(--card-accent);
+  opacity: 0.6;
+  transition: var(--transition);
+}
+
+.statCard.clickable:hover .statAction {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+/* ============================================================================
+   SECTION D'ENCOURAGEMENT
+============================================================================ */
+
+.encouragementSection {
+  border-top: 2px solid var(--bg-tertiary);
+  padding-top: 2rem;
+  position: relative;
+}
+
+.encouragementSection::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(135deg, var(--success-color), var(--warning-color));
+  border-radius: 1px;
+}
+
+.encouragementCard {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border: 2px solid #a7f3d0;
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.encouragementCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(135deg, var(--success-color), var(--primary-color));
+}
+
+.encouragementCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--success-color);
+}
+
+.encouragementIcon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--success-color), var(--success-hover));
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  transition: var(--transition);
+  box-shadow: var(--shadow-md);
+}
+
+.encouragementCard:hover .encouragementIcon {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: var(--shadow-lg);
+}
+
+.encouragementContent {
+  flex: 1;
+}
+
+.encouragementTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--success-color);
+  margin: 0 0 0.5rem 0;
+}
+
+.encouragementText {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* ============================================================================
+   ANIMATIONS D'APPARITION
+============================================================================ */
+
+.statCard {
+  animation: slideInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.statCard:nth-child(1) { animation-delay: 0.1s; }
+.statCard:nth-child(2) { animation-delay: 0.2s; }
+.statCard:nth-child(3) { animation-delay: 0.3s; }
+.statCard:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.encouragementCard {
+  animation: fadeInScale 0.8s ease-out 0.5s;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+============================================================================ */
+
+@media (max-width: 1024px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .statsContainer {
+    padding: 1.5rem;
+  }
+  
+  .statsHeader {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .statsHeaderIcon {
+    width: 48px;
+    height: 48px;
+    font-size: 1.25rem;
+  }
+  
+  .statsTitle {
+    font-size: 1.25rem;
+  }
+  
+  .statsSubtitle {
+    font-size: 0.95rem;
+  }
+  
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .statCard {
+    padding: 1.25rem;
+  }
+  
+  .statIcon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.125rem;
+  }
+  
+  .statNumber {
+    font-size: 1.75rem;
+  }
+  
+  .statText {
+    font-size: 1rem;
+  }
+  
+  .statLabel {
+    font-size: 0.875rem;
+  }
+  
+  .encouragementCard {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+  }
+  
+  .encouragementIcon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+  }
+  
+  .encouragementTitle {
+    font-size: 1.125rem;
+  }
+  
+  .encouragementText {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .statsContainer {
+    padding: 1rem;
+  }
+  
+  .statsHeader {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  .statsHeaderIcon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.125rem;
+  }
+  
+  .statsTitle {
+    font-size: 1.125rem;
+  }
+  
+  .statsSubtitle {
+    font-size: 0.9rem;
+  }
+  
+  .statCard {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+  
+  .statIcon {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+  
+  .statNumber {
+    font-size: 1.5rem;
+  }
+  
+  .statText {
+    font-size: 0.95rem;
+  }
+  
+  .statLabel {
+    font-size: 0.8rem;
+  }
+  
+  .encouragementCard {
+    padding: 1.25rem;
+  }
+  
+  .encouragementIcon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.125rem;
+  }
+  
+  .encouragementTitle {
+    font-size: 1rem;
+  }
+  
+  .encouragementText {
+    font-size: 0.9rem;
+  }
+}
+
+/* ============================================================================
+   SUPPORT MODE SOMBRE
+============================================================================ */
+
+@media (prefers-color-scheme: dark) {
+  .statsContainer {
+    --bg-primary: #1e293b;
+    --bg-secondary: #334155;
+    --bg-tertiary: #475569;
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --border-color: #475569;
+    --primary-light: #1e3a8a;
+    --success-light: #064e3b;
+    --warning-light: #451a03;
+    --info-light: #164e63;
+  }
+  
+  .statCard.primary {
+    --card-bg: linear-gradient(135deg, #1e293b, #1e3a8a);
+    --card-border: #3b82f6;
+  }
+  
+  .statCard.success {
+    --card-bg: linear-gradient(135deg, #1e293b, #064e3b);
+    --card-border: #10b981;
+  }
+  
+  .statCard.warning {
+    --card-bg: linear-gradient(135deg, #1e293b, #451a03);
+    --card-border: #f59e0b;
+  }
+  
+  .statCard.info {
+    --card-bg: linear-gradient(135deg, #1e293b, #164e63);
+    --card-border: #06b6d4;
+  }
+  
+  .encouragementCard {
+    background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+    border-color: #10b981;
+  }
+}
+
+/* ============================================================================
+   AMÉLIORATIONS D'ACCESSIBILITÉ
+============================================================================ */
+
+/* Focus states */
+.statLink:focus-visible,
+.statCard:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Réduction des animations */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .trendIcon {
+    animation: none;
+  }
+  
+  .statsHeaderIcon::before {
+    animation: none;
+  }
+}
+
+/* ============================================================================
+   OPTIMISATIONS PERFORMANCE
+============================================================================ */
+
+.statsContainer,
+.statCard,
+.encouragementCard {
+  will-change: transform;
+}
+
+.statsContainer {
+  contain: layout style paint;
+}
+
+/* ============================================================================
+   ÉTATS SPÉCIAUX
+============================================================================ */
+
+/* Effet de pulsation pour les nouvelles données */
+.statCard.updated {
+  animation: newDataPulse 1s ease-out;
+}
+
+@keyframes newDataPulse {
+  0% { box-shadow: 0 0 0 0 var(--card-accent); }
+  70% { box-shadow: 0 0 0 10px rgba(var(--card-accent), 0); }
+  100% { box-shadow: 0 0 0 0 rgba(var(--card-accent), 0); }
+}
+
+/* Style pour les cartes avec valeurs élevées */
+.statCard.highlight .statNumber {
+  font-size: 2.25rem;
+  animation: countUp 1s ease-out, highlight 2s ease-in-out infinite;
+}
+
+@keyframes highlight {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.1); }
+}
+
+/* Style pour les cartes d'alerte */
+.statCard.alert {
+  border-color: var(--warning-color);
+  background: linear-gradient(135deg, var(--bg-primary), #fef3c7);
+}
+
+.statCard.alert::before {
+  background: var(--warning-color);
+  transform: scaleY(1);
+  animation: alertPulse 2s infinite;
+}
+
+@keyframes alertPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}

@@ -1,0 +1,539 @@
+/* CandidaturesRecues.module.css */
+
+.candidaturesContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  font-size: 1.125rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.pageTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1f2937;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.pageTitle::before {
+  content: "📨";
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  background: linear-gradient(135deg, #eff6ff, #dbeafe);
+  border-radius: 12px;
+  border: 1px solid #bfdbfe;
+}
+
+/* Messages */
+.errorMessage {
+  background: linear-gradient(135deg, #fef2f2, #fee2e2);
+  color: #dc2626;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  border-left: 4px solid #dc2626;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.1);
+  animation: slideIn 0.3s ease-out;
+}
+
+.successMessage {
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  color: #16a34a;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  border-left: 4px solid #16a34a;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.1);
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Statistiques */
+.statistiques {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.statCard {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.75rem;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.statCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.statCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+}
+
+.statNumber {
+  font-size: 2.25rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+  color: #1f2937;
+}
+
+.statLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Couleurs spécifiques par type de stat */
+.statCard.pending::before {
+  background: linear-gradient(90deg, #f59e0b, #d97706);
+}
+
+.statCard.pending .statNumber {
+  color: #f59e0b;
+}
+
+.statCard.inProgress::before {
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+}
+
+.statCard.inProgress .statNumber {
+  color: #3b82f6;
+}
+
+.statCard.accepted::before {
+  background: linear-gradient(90deg, #10b981, #059669);
+}
+
+.statCard.accepted .statNumber {
+  color: #10b981;
+}
+
+.statCard.rejected::before {
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+}
+
+.statCard.rejected .statNumber {
+  color: #ef4444;
+}
+
+/* Icônes pour les statistiques */
+.statCard::after {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  opacity: 0.3;
+}
+
+.statCard:nth-child(1)::after {
+  content: "📊";
+}
+
+.statCard.pending::after {
+  content: "⏳";
+}
+
+.statCard.inProgress::after {
+  content: "🔄";
+}
+
+.statCard.accepted::after {
+  content: "✅";
+}
+
+.statCard.rejected::after {
+  content: "❌";
+}
+
+/* Filtres */
+.filtres {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.75rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 2rem;
+  align-items: end;
+}
+
+.filtreGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filtreLabel {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.filtreSelect {
+  padding: 0.75rem 1rem;
+  border: 2px solid #d1d5db;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  background: #ffffff;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.filtreSelect:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.filtreSelect:hover {
+  border-color: #9ca3af;
+  background: #fefefe;
+}
+
+.filtreSelect option {
+  padding: 0.5rem;
+  background: #ffffff;
+  color: #374151;
+}
+
+.resultCount {
+  color: #6b7280;
+  font-weight: 600;
+  font-size: 0.95rem;
+  background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+  padding: 0.75rem 1.25rem;
+  border-radius: 20px;
+  border: 1px solid #cbd5e1;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.resultCount::before {
+  content: "🔢";
+  font-size: 1rem;
+}
+
+/* Liste des candidatures */
+.candidaturesList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* État vide */
+.noCandidatures {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+  position: relative;
+  overflow: hidden;
+}
+
+.noCandidatures::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+}
+
+.noCandidatures h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.noCandidatures h3::before {
+  content: "📭";
+  font-size: 2rem;
+}
+
+.noCandidatures p {
+  color: #6b7280;
+  font-size: 1.125rem;
+  margin: 0;
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .candidaturesContainer {
+    padding: 1.5rem;
+  }
+
+  .statistiques {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+
+  .filtres {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .resultCount {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .candidaturesContainer {
+    padding: 1rem;
+  }
+
+  .pageTitle {
+    font-size: 1.75rem;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .statistiques {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .statCard {
+    padding: 1.5rem;
+  }
+
+  .statNumber {
+    font-size: 2rem;
+  }
+
+  .filtres {
+    padding: 1.5rem;
+    gap: 1.25rem;
+  }
+
+  .filtreSelect {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.9rem;
+  }
+
+  .noCandidatures {
+    padding: 2rem 1.5rem;
+  }
+
+  .noCandidatures h3 {
+    font-size: 1.5rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .noCandidatures p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .candidaturesContainer {
+    padding: 0.75rem;
+  }
+
+  .pageTitle {
+    font-size: 1.5rem;
+  }
+
+  .statistiques {
+    grid-template-columns: 1fr;
+  }
+
+  .statCard {
+    padding: 1.25rem;
+  }
+
+  .statNumber {
+    font-size: 1.75rem;
+  }
+
+  .filtres {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+
+  .resultCount {
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .noCandidatures {
+    padding: 1.5rem 1rem;
+    min-height: 300px;
+  }
+
+  .noCandidatures h3 {
+    font-size: 1.25rem;
+  }
+
+  .noCandidatures p {
+    font-size: 0.95rem;
+  }
+}
+
+/* États focus pour l'accessibilité */
+.filtreSelect:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Animation d'entrée */
+.candidaturesContainer {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation pour les statistiques */
+.statCard {
+  animation: fadeInScale 0.5s ease-out;
+  animation-fill-mode: both;
+}
+
+.statCard:nth-child(1) { animation-delay: 0.1s; }
+.statCard:nth-child(2) { animation-delay: 0.2s; }
+.statCard:nth-child(3) { animation-delay: 0.3s; }
+.statCard:nth-child(4) { animation-delay: 0.4s; }
+.statCard:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Effet de brillance sur les cartes de statistiques */
+.statCard::after {
+  transition: opacity 0.3s ease;
+}
+
+.statCard:hover::after {
+  opacity: 0.6;
+}
+
+/* Indicateur de loading pour les filtres */
+.filtres.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Style pour les options de select */
+.filtreSelect:focus option {
+  background: #f8fafc;
+}
+
+.filtreSelect option:checked {
+  background: #3b82f6;
+  color: #ffffff;
+}
+
+/* Amélioration des contrastes */
+.filtreLabel {
+  font-weight: 700;
+}
+
+.statLabel {
+  font-weight: 700;
+}
+
+/* Effet de survol amélioré pour les filtres */
+.filtres:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Transition fluide pour tous les éléments */
+* {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Style pour le focus des éléments interactifs */
+.filtreSelect:focus {
+  transform: translateY(-1px);
+}

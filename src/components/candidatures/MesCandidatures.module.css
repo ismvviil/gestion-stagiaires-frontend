@@ -1,0 +1,1142 @@
+/* ============================================================================
+   MES CANDIDATURES - STYLE PROFESSIONNEL CORPORATE
+   Design moderne adapté au marché de l'emploi avec React Icons
+============================================================================ */
+
+.candidaturesContainer {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  min-height: 100vh;
+}
+
+/* ============================================================================
+   LOADING STATE AMÉLIORÉ
+============================================================================ */
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  gap: 2rem;
+}
+
+.loadingSpinner {
+  width: 4rem;
+  height: 4rem;
+  border: 4px solid #e2e8f0;
+  border-top: 4px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loadingContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.loadingIcon {
+  font-size: 2rem;
+  color: #3b82f6;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.loadingText {
+  font-size: 1.125rem;
+  color: #64748b;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* ============================================================================
+   HEADER PROFESSIONNEL
+============================================================================ */
+
+.header {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.titleSection {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.titleIcon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.75rem;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.titleText {
+  flex: 1;
+}
+
+.pageTitle {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+}
+
+.pageSubtitle {
+  font-size: 1rem;
+  color: #64748b;
+  margin: 0;
+  font-weight: 500;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.refreshButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  color: #64748b;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+}
+
+.refreshButton:hover {
+  background: white;
+  border-color: #cbd5e1;
+  color: #3b82f6;
+  transform: translateY(-1px);
+}
+
+.refreshButton svg {
+  font-size: 1rem;
+}
+
+.searchOffresButton {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.5rem;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.searchOffresButton:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(16, 185, 129, 0.4);
+  color: white;
+  text-decoration: none;
+}
+
+.buttonArrow {
+  font-size: 0.875rem;
+  transition: transform 0.3s ease;
+}
+
+.searchOffresButton:hover .buttonArrow {
+  transform: translateX(3px);
+}
+
+/* ============================================================================
+   MESSAGES DE NOTIFICATION
+============================================================================ */
+
+.errorMessage,
+.successMessage {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.3s ease-out;
+}
+
+.errorMessage {
+  background: linear-gradient(135deg, #fef2f2, #fee2e2);
+  color: #dc2626;
+  border-left: 4px solid #dc2626;
+}
+
+.successMessage {
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  color: #16a34a;
+  border-left: 4px solid #16a34a;
+}
+
+.messageIcon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================================
+   SECTION STATISTIQUES
+============================================================================ */
+
+.statsSection {
+  margin-bottom: 2rem;
+}
+
+.statsHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 0 1rem;
+}
+
+.statsHeaderIcon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.statsHeaderText {
+  flex: 1;
+}
+
+.statsTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 0.25rem 0;
+}
+
+.statsSubtitle {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin: 0;
+}
+
+/* ============================================================================
+   SECTION FILTRES AMÉLIORÉE
+============================================================================ */
+
+.filtresSection {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.filtresHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.filtresHeaderIcon {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1rem;
+}
+
+.filtresTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0;
+}
+
+.filtresContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.filtreGroup {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.filtreLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.labelIcon {
+  font-size: 1rem;
+  color: #64748b;
+}
+
+.selectWrapper {
+  position: relative;
+}
+
+.filtreSelect {
+  padding: 0.75rem 3rem 0.75rem 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  background: #ffffff;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 220px;
+  appearance: none;
+  font-weight: 500;
+}
+
+.filtreSelect:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.filtreSelect:hover {
+  border-color: #cbd5e1;
+}
+
+.selectIcon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b;
+  pointer-events: none;
+  font-size: 1rem;
+}
+
+.resultCountCard {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+}
+
+.resultIcon {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #64748b, #475569);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1rem;
+}
+
+.resultText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.resultNumber {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1;
+}
+
+.resultLabel {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* ============================================================================
+   SECTION LISTE DES CANDIDATURES
+============================================================================ */
+
+.candidaturesListSection {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.listHeader {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.listTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.listSubtitle {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.candidaturesGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ============================================================================
+   ÉTATS VIDES AMÉLIORÉS
+============================================================================ */
+
+.emptyStateContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  padding: 2rem;
+}
+
+.emptyCandidatures,
+.noFilterResults {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  max-width: 600px;
+  width: 100%;
+}
+
+.emptyIcon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2rem auto;
+  font-size: 2.5rem;
+  color: #64748b;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.emptyContent {
+  margin-bottom: 2rem;
+}
+
+.emptyTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 1rem 0;
+}
+
+.emptyDescription {
+  color: #64748b;
+  font-size: 1.125rem;
+  margin: 0 0 2rem 0;
+  line-height: 1.6;
+}
+
+.emptyActions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.exploreButton,
+.resetFilterButton {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  border: none;
+  cursor: pointer;
+}
+
+.exploreButton:hover,
+.resetFilterButton:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+  color: white;
+  text-decoration: none;
+}
+
+.buttonIcon {
+  font-size: 1.125rem;
+}
+
+.tipCard {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border: 1px solid #f59e0b;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  text-align: left;
+}
+
+.tipIcon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.tipContent {
+  flex: 1;
+}
+
+.tipTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #92400e;
+  margin: 0 0 0.5rem 0;
+}
+
+.tipText {
+  font-size: 0.875rem;
+  color: #92400e;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN - ADAPTATIF MOBILE
+============================================================================ */
+
+/* Tablettes grandes (1024px - 1200px) */
+@media (max-width: 1200px) {
+  .candidaturesContainer {
+    max-width: 1024px;
+    padding: 1.5rem;
+  }
+
+  .headerContent {
+    gap: 1.5rem;
+  }
+
+  .pageTitle {
+    font-size: 2rem;
+  }
+
+  .titleIcon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+
+  .filtresContent {
+    gap: 1.5rem;
+  }
+
+  .filtreSelect {
+    min-width: 200px;
+  }
+}
+
+/* Tablettes moyennes (768px - 1024px) */
+@media (max-width: 1024px) {
+  .candidaturesContainer {
+    padding: 1.25rem;
+  }
+
+  .headerContent {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+  }
+
+  .titleSection {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .headerActions {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .refreshButton,
+  .searchOffresButton {
+    flex: 1;
+    justify-content: center;
+    min-width: 150px;
+  }
+
+  .filtresContent {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+  }
+
+  .filtreGroup {
+    justify-content: space-between;
+  }
+
+  .filtreSelect {
+    min-width: auto;
+    flex: 1;
+  }
+
+  .resultCountCard {
+    align-self: center;
+  }
+}
+
+/* Mobile large (480px - 768px) */
+@media (max-width: 768px) {
+  .candidaturesContainer {
+    padding: 1rem;
+  }
+
+  .header {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .titleSection {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .titleIcon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.75rem;
+  }
+
+  .pageTitle {
+    font-size: 1.75rem;
+  }
+
+  .pageSubtitle {
+    font-size: 0.95rem;
+  }
+
+  .headerActions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .refreshButton,
+  .searchOffresButton {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .statsHeaderIcon {
+    width: 36px;
+    height: 36px;
+    font-size: 1.125rem;
+  }
+
+  .statsTitle {
+    font-size: 1.125rem;
+  }
+
+  .filtresSection {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+
+  .filtresHeaderIcon {
+    width: 28px;
+    height: 28px;
+    font-size: 0.875rem;
+  }
+
+  .filtresTitle {
+    font-size: 1rem;
+  }
+
+  .filtreGroup {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .filtreLabel {
+    justify-content: center;
+  }
+
+  .filtreSelect {
+    padding: 0.875rem 3rem 0.875rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .resultCountCard {
+    padding: 1rem;
+  }
+
+  .resultIcon {
+    width: 28px;
+    height: 28px;
+    font-size: 0.875rem;
+  }
+
+  .candidaturesListSection {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+
+  .emptyIcon {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .emptyTitle {
+    font-size: 1.5rem;
+  }
+
+  .emptyDescription {
+    font-size: 1rem;
+  }
+
+  .emptyCandidatures,
+  .noFilterResults {
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+  }
+
+  .tipCard {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .tipIcon {
+    width: 36px;
+    height: 36px;
+    font-size: 1.125rem;
+    align-self: center;
+  }
+}
+
+/* Mobile petit (320px - 480px) */
+@media (max-width: 480px) {
+  .candidaturesContainer {
+    padding: 0.75rem;
+  }
+
+  .header {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+
+  .titleIcon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+
+  .pageTitle {
+    font-size: 1.5rem;
+  }
+
+  .pageSubtitle {
+    font-size: 0.875rem;
+  }
+
+  .refreshButton,
+  .searchOffresButton {
+    padding: 0.875rem;
+    font-size: 0.875rem;
+  }
+
+  .buttonIcon,
+  .buttonArrow {
+    font-size: 1rem;
+  }
+
+  .messageIcon {
+    font-size: 1.125rem;
+  }
+
+  .statsHeader {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  .filtresSection {
+    padding: 1rem;
+  }
+
+  .filtresHeader {
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .filtreSelect {
+    padding: 0.75rem 2.5rem 0.75rem 0.875rem;
+    font-size: 0.875rem;
+  }
+
+  .candidaturesListSection {
+    padding: 1rem;
+  }
+
+  .listTitle {
+    font-size: 1.125rem;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .emptyCandidatures,
+  .noFilterResults {
+    padding: 1.5rem 1rem;
+  }
+
+  .emptyIcon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .emptyTitle {
+    font-size: 1.25rem;
+  }
+
+  .emptyDescription {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .exploreButton,
+  .resetFilterButton {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .tipCard {
+    padding: 1.25rem;
+  }
+
+  .tipIcon {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .tipTitle {
+    font-size: 0.95rem;
+  }
+
+  .tipText {
+    font-size: 0.8rem;
+  }
+}
+
+/* ============================================================================
+   ANIMATIONS & MICRO-INTERACTIONS
+============================================================================ */
+
+/* Animation d'entrée générale */
+.candidaturesContainer {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation séquentielle des sections */
+.header {
+  animation: fadeInScale 0.6s ease-out;
+}
+
+.statsSection {
+  animation: fadeInScale 0.6s ease-out 0.1s both;
+}
+
+.filtresSection {
+  animation: fadeInScale 0.6s ease-out 0.2s both;
+}
+
+.candidaturesListSection {
+  animation: fadeInScale 0.6s ease-out 0.3s both;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Animation des icônes au hover */
+.titleIcon,
+.statsHeaderIcon,
+.filtresHeaderIcon,
+.resultIcon,
+.emptyIcon {
+  transition: all 0.3s ease;
+}
+
+.titleIcon:hover,
+.statsHeaderIcon:hover,
+.filtresHeaderIcon:hover {
+  transform: scale(1.05);
+}
+
+/* Animation des boutons */
+.refreshButton,
+.searchOffresButton,
+.exploreButton,
+.resetFilterButton {
+  position: relative;
+  overflow: hidden;
+}
+
+.refreshButton::before,
+.searchOffresButton::before,
+.exploreButton::before,
+.resetFilterButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s;
+}
+
+.refreshButton:hover::before,
+.searchOffresButton:hover::before,
+.exploreButton:hover::before,
+.resetFilterButton:hover::before {
+  left: 100%;
+}
+
+/* Animation de typing pour les messages */
+.loadingText,
+.emptyDescription {
+  overflow: hidden;
+  border-right: 2px solid transparent;
+  animation: typing 2s steps(40) 1s both;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* ============================================================================
+   ÉTATS FOCUS & ACCESSIBILITÉ
+============================================================================ */
+
+.refreshButton:focus-visible,
+.searchOffresButton:focus-visible,
+.filtreSelect:focus-visible,
+.exploreButton:focus-visible,
+.resetFilterButton:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Amélioration des contrastes en mode sombre */
+@media (prefers-color-scheme: dark) {
+  .candidaturesContainer {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  }
+
+  .header,
+  .filtresSection,
+  .candidaturesListSection {
+    background: rgba(30, 41, 59, 0.95);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .pageTitle,
+  .statsTitle,
+  .filtresTitle,
+  .listTitle,
+  .emptyTitle {
+    color: #f8fafc;
+  }
+
+  .pageSubtitle,
+  .statsSubtitle,
+  .resultLabel,
+  .emptyDescription {
+    color: #cbd5e1;
+  }
+
+  .filtreSelect {
+    background: #334155;
+    border-color: #475569;
+    color: #f8fafc;
+  }
+
+  .resultCountCard {
+    background: linear-gradient(135deg, #334155, #475569);
+    border-color: #64748b;
+  }
+
+  .tipCard {
+    background: linear-gradient(135deg, #365314, #4d7c0f);
+    border-color: #65a30d;
+  }
+}
+
+/* Réduction du mouvement pour l'accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================================
+   PRINT STYLES
+============================================================================ */
+
+@media print {
+  .candidaturesContainer {
+    background: white;
+    box-shadow: none;
+    max-width: none;
+  }
+
+  .header,
+  .filtresSection,
+  .candidaturesListSection {
+    background: white;
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+
+  .headerActions,
+  .refreshButton,
+  .searchOffresButton {
+    display: none;
+  }
+
+  .titleIcon,
+  .statsHeaderIcon,
+  .filtresHeaderIcon {
+    background: #000;
+  }
+}

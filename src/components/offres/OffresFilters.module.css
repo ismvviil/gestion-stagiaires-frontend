@@ -1,0 +1,267 @@
+/* OffresFilters.module.css */
+
+.filtersContainer {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e7eb;
+}
+
+.filtersTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 1.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filtersTitle::before {
+  content: "🔍";
+  font-size: 1rem;
+}
+
+.filtersGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filterLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+.filterInput,
+.filterSelect {
+  padding: 0.625rem 0.75rem;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  background-color: #ffffff;
+  color: #374151;
+}
+
+.filterInput:focus,
+.filterSelect:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  background-color: #fefefe;
+}
+
+.filterInput:hover,
+.filterSelect:hover {
+  border-color: #9ca3af;
+}
+
+.filterInput::placeholder {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.filterSelect {
+  cursor: pointer;
+}
+
+.filterSelect option {
+  padding: 0.5rem;
+  background-color: #ffffff;
+  color: #374151;
+}
+
+.filtersActions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.resetButton {
+  padding: 0.625rem 1.25rem;
+  background-color: #ffffff;
+  color: #6b7280;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.resetButton::before {
+  content: "↻";
+  font-size: 1rem;
+}
+
+.resetButton:hover {
+  background-color: #f9fafb;
+  border-color: #9ca3af;
+  color: #374151;
+  transform: translateY(-1px);
+}
+
+.resetButton:active {
+  transform: translateY(0);
+}
+
+/* États spéciaux pour les champs avec valeur */
+.filterInput:not(:placeholder-shown),
+.filterSelect:not([value=""]) {
+  border-color: #10b981;
+  background-color: #f0fdf4;
+}
+
+.filterInput:not(:placeholder-shown):focus,
+.filterSelect:not([value=""]):focus {
+  border-color: #059669;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* Animation pour les filtres actifs */
+.filterGroup:has(.filterInput:not(:placeholder-shown)),
+.filterGroup:has(.filterSelect:not([value=""])) {
+  animation: highlight 0.3s ease-out;
+}
+
+@keyframes highlight {
+  0% {
+    background-color: rgba(16, 185, 129, 0.1);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .filtersGrid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .filtersContainer {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .filtersTitle {
+    font-size: 1.125rem;
+  }
+
+  .filtersGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .filterInput,
+  .filterSelect {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .filtersActions {
+    justify-content: center;
+  }
+
+  .resetButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .filtersGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .filtersContainer {
+    padding: 0.75rem;
+  }
+
+  .filterInput,
+  .filterSelect {
+    padding: 0.5rem;
+  }
+}
+
+/* Styles pour l'accessibilité */
+.filterInput:focus-visible,
+.filterSelect:focus-visible,
+.resetButton:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Animation d'entrée */
+.filtersContainer {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Indicateur visuel pour les filtres appliqués */
+.filtersContainer:has(.filterInput:not(:placeholder-shown)),
+.filtersContainer:has(.filterSelect:not([value=""])) {
+  border-left: 4px solid #10b981;
+}
+
+/* Styles pour les champs de date */
+input[type="date"].filterInput {
+  position: relative;
+}
+
+input[type="date"].filterInput::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  border-radius: 4px;
+  margin-left: 4px;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+input[type="date"].filterInput::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* Badge pour compter les filtres actifs */
+.filtersTitle::after {
+  content: attr(data-active-filters);
+  background: #3b82f6;
+  color: white;
+  border-radius: 12px;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-left: auto;
+}
+
+.filtersTitle[data-active-filters="0"]::after {
+  display: none;
+}

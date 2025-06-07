@@ -1,0 +1,349 @@
+/* ConfirmDialog.module.css */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.dialog {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  max-width: 500px;
+  width: 100%;
+  padding: 2rem;
+  position: relative;
+  animation: slideUp 0.3s ease-out;
+  border: 1px solid #e5e7eb;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 1rem 0;
+  line-height: 1.3;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.title::before {
+  content: "⚠️";
+  font-size: 1.25rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.message {
+  font-size: 1rem;
+  color: #4b5563;
+  line-height: 1.6;
+  margin: 0 0 2rem 0;
+  padding-left: 3.25rem;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+.cancelButton,
+.confirmButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  min-width: 100px;
+}
+
+.cancelButton::before,
+.confirmButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.cancelButton:hover::before,
+.confirmButton:hover::before {
+  left: 100%;
+}
+
+.cancelButton {
+  background: #ffffff;
+  color: #6b7280;
+  border: 2px solid #d1d5db;
+}
+
+.cancelButton:hover {
+  background: #f9fafb;
+  color: #374151;
+  border-color: #9ca3af;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cancelButton:active {
+  transform: translateY(0);
+}
+
+.confirmButton {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.confirmButton:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.confirmButton:active {
+  transform: translateY(0);
+}
+
+.confirmButton.dangerous {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+
+.confirmButton.dangerous:hover {
+  background: linear-gradient(135deg, #b91c1c, #991b1b);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+}
+
+.confirmButton.dangerous + .cancelButton {
+  order: -1;
+}
+
+/* Style spécial pour les dialogues dangereux */
+.dialog:has(.confirmButton.dangerous) .title::before {
+  content: "🚨";
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+}
+
+.dialog:has(.confirmButton.dangerous) .title {
+  color: #dc2626;
+}
+
+.dialog:has(.confirmButton.dangerous) .message {
+  color: #7f1d1d;
+  font-weight: 500;
+}
+
+/* Animation pour les états de focus */
+.cancelButton:focus-visible,
+.confirmButton:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.confirmButton.dangerous:focus-visible {
+  outline-color: #dc2626;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .overlay {
+    padding: 0.75rem;
+  }
+
+  .dialog {
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .title::before {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .message {
+    font-size: 0.95rem;
+    padding-left: 2.75rem;
+  }
+
+  .actions {
+    flex-direction: column-reverse;
+    gap: 0.75rem;
+  }
+
+  .cancelButton,
+  .confirmButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .confirmButton.dangerous + .cancelButton {
+    order: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .overlay {
+    padding: 0.5rem;
+  }
+
+  .dialog {
+    padding: 1.25rem;
+  }
+
+  .title {
+    font-size: 1.125rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  .message {
+    padding-left: 0;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .cancelButton,
+  .confirmButton {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Animation de fermeture */
+.overlay.closing {
+  animation: fadeOut 0.2s ease-in forwards;
+}
+
+.overlay.closing .dialog {
+  animation: slideDown 0.2s ease-in forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+}
+
+/* Amélioration de l'accessibilité */
+.overlay {
+  /* Pour les lecteurs d'écran */
+  role: dialog;
+  aria-modal: true;
+}
+
+/* Empêcher le scroll du body quand le dialog est ouvert */
+body:has(.overlay) {
+  overflow: hidden;
+}
+
+/* Style pour les boutons pressés */
+.cancelButton:active,
+.confirmButton:active {
+  transition: transform 0.1s ease;
+}
+
+/* Effet de lueur pour les actions importantes */
+.confirmButton.dangerous {
+  position: relative;
+}
+
+.confirmButton.dangerous::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, transparent, rgba(220, 38, 38, 0.3), transparent);
+  border-radius: 12px;
+  z-index: -1;
+  animation: glow 2s infinite;
+}
+
+@keyframes glow {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Amélioration du contraste pour les petites tailles */
+@media (max-width: 480px) {
+  .title {
+    font-weight: 800;
+  }
+  
+  .message {
+    font-weight: 500;
+  }
+}

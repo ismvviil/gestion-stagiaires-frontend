@@ -1,0 +1,996 @@
+/* ============================================================================
+   CV UPLOAD SECTION - CSS MODULE PROFESSIONNEL
+   Design moderne pour upload et analyse de CV avec IA
+============================================================================ */
+
+/* Variables CSS cohérentes avec le thème */
+.cvSection {
+  --primary-color: #3b82f6;
+  --primary-hover: #2563eb;
+  --secondary-color: #8b5cf6;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+  --info-color: #06b6d4;
+  --ai-color: #7c3aed;
+  --ai-hover: #6d28d9;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --border-color: #e2e8f0;
+  --border-dashed: #cbd5e1;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 12px 35px rgba(0, 0, 0, 0.2);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.2s ease;
+}
+
+/* ============================================================================
+   CONTAINER PRINCIPAL
+============================================================================ */
+
+.cvSection {
+  background: var(--bg-primary);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  position: relative;
+}
+
+.cvSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(135deg, var(--primary-color), var(--ai-color), var(--info-color));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cvSection:hover::before {
+  opacity: 1;
+}
+
+/* ============================================================================
+   HEADER DE LA CARTE
+============================================================================ */
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 2.5rem 1.5rem;
+  border-bottom: 2px solid var(--bg-tertiary);
+  position: relative;
+}
+
+.cardHeader::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 2.5rem;
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(135deg, var(--primary-color), var(--ai-color));
+  border-radius: 1px;
+}
+
+.cardTitleGroup {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cardIcon {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  padding: 0.625rem;
+  background: linear-gradient(135deg, #dbeafe, #e0f2fe);
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+}
+
+.cardIcon:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cardActions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+/* ============================================================================
+   BOUTONS D'ACTION DU HEADER
+============================================================================ */
+
+.analyzeButton {
+  background: linear-gradient(135deg, var(--ai-color) 0%, var(--ai-hover) 100%);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.analyzeButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.analyzeButton:hover::before {
+  left: 100%;
+}
+
+.analyzeButton:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  background: linear-gradient(135deg, var(--ai-hover) 0%, #581c87 100%);
+}
+
+.analyzeButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.downloadButton {
+  background: linear-gradient(135deg, var(--info-color) 0%, #0891b2 100%);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.downloadButton:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+}
+
+.spinningIcon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ============================================================================
+   CONTENU DE LA CARTE
+============================================================================ */
+
+.cardContent {
+  padding: 2.5rem;
+}
+
+/* ============================================================================
+   INFORMATIONS DU CV (QUAND UPLOADÉ)
+============================================================================ */
+
+.cvInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.cvCard {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--border-color);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.cvCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(135deg, var(--success-color), var(--primary-color));
+  transition: width 0.3s ease;
+}
+
+.cvCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-color);
+}
+
+.cvCard:hover::before {
+  width: 6px;
+}
+
+.cvIconContainer {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.cvCard:hover .cvIconContainer {
+  transform: scale(1.05) rotate(5deg);
+}
+
+.cvIcon {
+  font-size: 1.75rem;
+  color: white;
+}
+
+.cvDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cvName {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.cvFilename {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin: 0;
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.cvMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.cvDate {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.cvAnalyzed {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--success-color);
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  border-radius: var(--radius-sm);
+  border: 1px solid #bbf7d0;
+}
+
+.analyzedIcon {
+  font-size: 1rem;
+}
+
+.cvActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.viewButton {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--warning-color), #d97706);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.125rem;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.viewButton:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-md);
+}
+
+/* ============================================================================
+   RÉSULTATS D'ANALYSE IA
+============================================================================ */
+
+.analysisResults {
+  background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+  border: 2px solid #e9d5ff;
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.analysisResults::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(135deg, var(--ai-color), var(--secondary-color));
+}
+
+.analysisHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.analysisIcon {
+  font-size: 1.25rem;
+  color: var(--ai-color);
+  padding: 0.5rem;
+  background: rgba(124, 58, 237, 0.1);
+  border-radius: var(--radius-sm);
+}
+
+.analysisTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--ai-color);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.analysisContent {
+  color: var(--text-primary);
+}
+
+.competencesPreview {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.competencesLabel {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.competencesText {
+  font-size: 1rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  font-weight: 500;
+}
+
+/* ============================================================================
+   ZONE D'UPLOAD (QUAND PAS DE CV)
+============================================================================ */
+
+.uploadArea {
+  width: 100%;
+}
+
+.dropZone {
+  width: 100%;
+  min-height: 300px;
+  border: 3px dashed var(--border-dashed);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.dropZone::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 25%,
+    rgba(59, 130, 246, 0.05) 25%,
+    rgba(59, 130, 246, 0.05) 50%,
+    transparent 50%,
+    transparent 75%,
+    rgba(59, 130, 246, 0.05) 75%
+  );
+  background-size: 20px 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.dropZone:hover {
+  border-color: var(--primary-color);
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.dropZone:hover::before {
+  opacity: 1;
+}
+
+.dropZone.dragOver {
+  border-color: var(--success-color);
+  border-style: solid;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  transform: scale(1.02);
+  box-shadow: var(--shadow-lg);
+}
+
+.dropZone.dragOver::before {
+  background: linear-gradient(
+    45deg,
+    transparent 25%,
+    rgba(16, 185, 129, 0.1) 25%,
+    rgba(16, 185, 129, 0.1) 50%,
+    transparent 50%,
+    transparent 75%,
+    rgba(16, 185, 129, 0.1) 75%
+  );
+  opacity: 1;
+  animation: slidePattern 2s linear infinite;
+}
+
+.dropZone.uploading {
+  border-color: var(--warning-color);
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  pointer-events: none;
+}
+
+@keyframes slidePattern {
+  0% { background-position: 0 0; }
+  100% { background-position: 20px 20px; }
+}
+
+/* ============================================================================
+   CONTENU DE LA ZONE D'UPLOAD
+============================================================================ */
+
+.uploadPrompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+  padding: 2rem;
+  max-width: 400px;
+}
+
+.uploadIcon {
+  font-size: 4rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+.uploadTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.uploadText {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.formatInfo {
+  margin-top: 1rem;
+}
+
+.formats {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  background: var(--bg-primary);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.aiFeature {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+  border: 2px solid #e9d5ff;
+  border-radius: var(--radius-md);
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.aiFeature::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.1), transparent);
+  animation: shimmer 3s infinite;
+}
+
+.aiIcon {
+  font-size: 1.25rem;
+  color: var(--ai-color);
+  animation: pulse 2s infinite;
+}
+
+.aiText {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ai-color);
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* ============================================================================
+   INDICATEUR D'UPLOAD EN COURS
+============================================================================ */
+
+.uploadingIndicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(59, 130, 246, 0.2);
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.uploadingText {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.uploadingSubtext {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ============================================================================
+   ACTIONS D'UPLOAD SUPPLÉMENTAIRES
+============================================================================ */
+
+.uploadActions {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--bg-tertiary);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.uploadButton {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
+  color: white;
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 1rem 2rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: var(--transition);
+  box-shadow: var(--shadow-md);
+  min-width: 200px;
+  justify-content: center;
+}
+
+.uploadButton:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(135deg, var(--primary-hover) 0%, #1d4ed8 100%);
+}
+
+.uploadButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.uploadOptions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: var(--transition-fast);
+}
+
+.checkboxLabel:hover {
+  color: var(--text-primary);
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary-color);
+  cursor: pointer;
+}
+
+/* ============================================================================
+   MESSAGE D'ERREUR
+============================================================================ */
+
+.errorMessage {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  color: var(--danger-color);
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  margin-top: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  animation: slideIn 0.3s ease-out;
+}
+
+.errorMessage svg {
+  font-size: 1.125rem;
+  flex-shrink: 0;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================================
+   INPUT CACHÉ
+============================================================================ */
+
+.hiddenInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+============================================================================ */
+
+@media (max-width: 1024px) {
+  .cardHeader {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .cardActions {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .cardContent {
+    padding: 1.5rem;
+  }
+  
+  .cardHeader {
+    padding: 1.5rem 1.5rem 1rem;
+  }
+  
+  .cvCard {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+  }
+  
+  .cvIconContainer {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .cvIcon {
+    font-size: 1.5rem;
+  }
+  
+  .cvMeta {
+    justify-content: center;
+  }
+  
+  .dropZone {
+    min-height: 250px;
+  }
+  
+  .uploadPrompt {
+    padding: 1.5rem;
+  }
+  
+  .uploadIcon {
+    font-size: 3rem;
+  }
+  
+  .uploadTitle {
+    font-size: 1.25rem;
+  }
+  
+  .uploadText {
+    font-size: 1rem;
+  }
+  
+  .analysisResults {
+    padding: 1.5rem;
+  }
+  
+  .cardActions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .analyzeButton,
+  .downloadButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardContent {
+    padding: 1rem;
+  }
+  
+  .cardHeader {
+    padding: 1rem 1rem 0.75rem;
+  }
+  
+  .cardHeader::after {
+    left: 1rem;
+  }
+  
+  .uploadPrompt {
+    padding: 1rem;
+    gap: 1rem;
+  }
+  
+  .uploadIcon {
+    font-size: 2.5rem;
+  }
+  
+  .uploadTitle {
+    font-size: 1.125rem;
+  }
+  
+  .uploadText {
+    font-size: 0.95rem;
+  }
+  
+  .dropZone {
+    min-height: 200px;
+  }
+  
+  .analyzeButton,
+  .downloadButton {
+    padding: 0.625rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .uploadButton {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    min-width: 180px;
+  }
+  
+  .checkboxLabel {
+    font-size: 0.9rem;
+  }
+  
+  .cvCard {
+    padding: 1.25rem;
+  }
+  
+  .analysisResults {
+    padding: 1.25rem;
+  }
+}
+
+/* ============================================================================
+   SUPPORT MODE SOMBRE
+============================================================================ */
+
+@media (prefers-color-scheme: dark) {
+  .cvSection {
+    --bg-primary: #1e293b;
+    --bg-secondary: #334155;
+    --bg-tertiary: #475569;
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --border-color: #475569;
+    --border-dashed: #64748b;
+  }
+  
+  .dropZone:hover {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
+  }
+  
+  .dropZone.dragOver {
+    background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+  }
+  
+  .dropZone.uploading {
+    background: linear-gradient(135deg, #451a03 0%, #78350f 100%);
+  }
+  
+  .analysisResults {
+    background: linear-gradient(135deg, #2d1b69 0%, #3730a3 100%);
+    border-color: #6366f1;
+  }
+  
+  .aiFeature {
+    background: linear-gradient(135deg, #2d1b69 0%, #3730a3 100%);
+    border-color: #6366f1;
+  }
+}
+
+/* ============================================================================
+   AMÉLIORATIONS D'ACCESSIBILITÉ
+============================================================================ */
+
+/* Focus states */
+.dropZone:focus-visible,
+.uploadButton:focus-visible,
+.analyzeButton:focus-visible,
+.downloadButton:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Réduction des animations */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .uploadIcon,
+  .aiIcon {
+    animation: none;
+  }
+}
+
+/* ============================================================================
+   OPTIMISATIONS PERFORMANCE
+============================================================================ */
+
+.cvSection,
+.dropZone,
+.cvCard,
+.analysisResults {
+  will-change: transform;
+  contain: layout style paint;
+}

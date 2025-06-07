@@ -1,0 +1,443 @@
+/* MessageInput.module.css */
+
+.messageInputForm {
+  width: 100%;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  background-color: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 24px;
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.inputContainer:focus-within {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  background-color: #fefefe;
+}
+
+.inputContainer:hover:not(:focus-within) {
+  border-color: #d1d5db;
+  background-color: #fafbfc;
+}
+
+/* Textarea principal */
+.messageTextarea {
+  flex: 1;
+  border: none;
+  outline: none;
+  resize: none;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #374151;
+  background: transparent;
+  min-height: 20px;
+  max-height: 120px;
+  font-family: inherit;
+  overflow-y: auto;
+  transition: all 0.2s ease;
+}
+
+.messageTextarea::placeholder {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.messageTextarea:disabled {
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.messageTextarea.disabled {
+  opacity: 0.6;
+}
+
+/* Scrollbar du textarea */
+.messageTextarea::-webkit-scrollbar {
+  width: 6px;
+}
+
+.messageTextarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.messageTextarea::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.messageTextarea::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Bouton d'attachement */
+.attachButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background-color: #f8fafc;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+.attachButton:hover:not(:disabled) {
+  background-color: #e2e8f0;
+  color: #374151;
+  transform: translateY(-1px) rotate(15deg);
+}
+
+.attachButton:active:not(:disabled) {
+  transform: translateY(0) rotate(0deg);
+}
+
+.attachButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Bouton d'envoi */
+.sendButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: #e5e7eb;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.125rem;
+  color: #9ca3af;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.sendButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Bouton d'envoi actif */
+.sendButtonActive {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  transform: scale(1.05);
+}
+
+.sendButtonActive:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  transform: scale(1.1) translateY(-1px);
+}
+
+.sendButtonActive:active:not(:disabled) {
+  transform: scale(1.02);
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 100%);
+}
+
+/* Animation d'envoi */
+.sendButton:active:not(:disabled) {
+  animation: sendPulse 0.3s ease-out;
+}
+
+@keyframes sendPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+/* État de soumission */
+.sendButton:disabled.sendButtonActive {
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+  animation: sending 1s ease-in-out infinite;
+}
+
+@keyframes sending {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Effet de focus pour l'accessibilité */
+.attachButton:focus,
+.sendButton:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Indicateur de frappe (optionnel) */
+.inputContainer.typing::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #3b82f6);
+  background-size: 200% 100%;
+  animation: typingIndicator 2s linear infinite;
+  border-radius: 24px 24px 0 0;
+}
+
+@keyframes typingIndicator {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* États d'interaction avancés */
+.inputContainer.focused {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.inputContainer.hasContent {
+  border-color: #10b981;
+}
+
+.inputContainer.hasContent:focus-within {
+  border-color: #059669;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .inputContainer {
+    padding: 0.625rem 0.875rem;
+    border-radius: 20px;
+    gap: 0.375rem;
+  }
+
+  .messageTextarea {
+    font-size: 0.8125rem;
+  }
+
+  .attachButton {
+    width: 32px;
+    height: 32px;
+    font-size: 0.875rem;
+  }
+
+  .sendButton {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .inputContainer {
+    padding: 0.5rem 0.75rem;
+    border-radius: 18px;
+    gap: 0.25rem;
+  }
+
+  .messageTextarea {
+    font-size: 0.75rem;
+  }
+
+  .messageTextarea::placeholder {
+    font-size: 0.75rem;
+  }
+
+  .attachButton {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8125rem;
+  }
+
+  .sendButton {
+    width: 32px;
+    height: 32px;
+    font-size: 0.875rem;
+  }
+}
+
+/* Thème sombre */
+@media (prefers-color-scheme: dark) {
+  .inputContainer {
+    background-color: #374151;
+    border-color: #4b5563;
+  }
+
+  .inputContainer:focus-within {
+    background-color: #374151;
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+  }
+
+  .inputContainer:hover:not(:focus-within) {
+    border-color: #6b7280;
+    background-color: #4b5563;
+  }
+
+  .messageTextarea {
+    color: #f9fafb;
+  }
+
+  .messageTextarea::placeholder {
+    color: #9ca3af;
+  }
+
+  .attachButton {
+    background-color: #4b5563;
+    color: #d1d5db;
+  }
+
+  .attachButton:hover:not(:disabled) {
+    background-color: #6b7280;
+    color: #f9fafb;
+  }
+
+  .sendButton {
+    background-color: #4b5563;
+    color: #9ca3af;
+  }
+}
+
+/* Animations personnalisées */
+.inputContainer.messageReceived {
+  animation: messageReceived 0.5s ease-out;
+}
+
+@keyframes messageReceived {
+  0% { border-color: #10b981; }
+  100% { border-color: #e5e7eb; }
+}
+
+/* Variations de style */
+.inputContainer.compact {
+  padding: 0.5rem 0.75rem;
+  border-radius: 16px;
+}
+
+.inputContainer.rounded {
+  border-radius: 32px;
+}
+
+.inputContainer.minimal {
+  background-color: transparent;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+/* Indicateurs d'état */
+.inputContainer.error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.inputContainer.success {
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* Animation d'apparition */
+.messageInputForm {
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Amélioration de l'accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  .messageInputForm,
+  .inputContainer,
+  .attachButton,
+  .sendButton {
+    animation: none;
+    transition: none;
+  }
+
+  .attachButton:hover,
+  .sendButtonActive:hover {
+    transform: none;
+  }
+}
+
+/* Support pour les émojis */
+.messageTextarea {
+  font-variant-emoji: emoji;
+}
+
+/* Styles pour les mentions (optionnel) */
+.messageTextarea .mention {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  border-radius: 4px;
+  padding: 0.125rem 0.25rem;
+  font-weight: 500;
+}
+
+/* Compteur de caractères (optionnel) */
+.inputContainer::after {
+  content: attr(data-count);
+  position: absolute;
+  bottom: -1.5rem;
+  right: 0;
+  font-size: 0.6875rem;
+  color: #9ca3af;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.inputContainer.showCount::after {
+  opacity: 1;
+}
+
+/* Drag and drop pour les fichiers */
+.inputContainer.dragOver {
+  border-color: #3b82f6;
+  background-color: rgba(59, 130, 246, 0.05);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.inputContainer.dragOver::before {
+  content: '📎 Déposez votre fichier ici';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(59, 130, 246, 0.9);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.messageInputContainer {
+  padding: 1rem 1.5rem 1.25rem !important; /* Plus de padding en bas */
+}
+
+.messageInput {
+  min-height: 48px !important; /* Hauteur minimum plus grande */
+  padding: 0.875rem 1rem !important; /* Plus de padding vertical */
+}

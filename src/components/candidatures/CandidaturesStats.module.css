@@ -1,0 +1,629 @@
+/* ============================================================================
+   CANDIDATURES STATS - CSS COMPLET AVEC LAYOUT 3x3
+   Style professionnel corporate avec grille 3 colonnes
+============================================================================ */
+
+.statsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* ============================================================================
+   LAYOUT 3x3 - MODIFICATION PRINCIPALE
+============================================================================ */
+
+.mainStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  /* 3 colonnes exactes */
+  gap: 1.25rem;
+}
+
+.additionalStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  /* 3 colonnes exactes */
+  gap: 1rem;
+}
+
+/* ============================================================================
+   CARTES STATISTIQUES - DESIGN CORPORATE
+============================================================================ */
+
+.statCard {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.statCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  transition: all 0.3s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.statCard:hover::before {
+  height: 6px;
+}
+
+/* ============================================================================
+   COULEURS SPÉCIFIQUES PAR TYPE DE STATUT
+============================================================================ */
+
+.statCard.total::before {
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+}
+
+.statCard.pending::before {
+  background: linear-gradient(90deg, #f59e0b, #d97706);
+}
+
+.statCard.inProgress::before {
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+}
+
+.statCard.accepted::before {
+  background: linear-gradient(90deg, #10b981, #059669);
+}
+
+.statCard.rejected::before {
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+}
+
+.statCard.withdrawn::before {
+  background: linear-gradient(90deg, #6b7280, #4b5563);
+}
+
+/* ============================================================================
+   ICÔNES PROFESSIONNELLES
+============================================================================ */
+
+.statIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.icon {
+  font-size: 24px;
+  transition: all 0.3s ease;
+}
+
+/* Couleurs professionnelles pour chaque type de statut */
+.total .statIcon {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.total .icon {
+  color: white;
+}
+
+.pending .statIcon {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  box-shadow: 0 4px 15px rgba(240, 147, 251, 0.3);
+}
+
+.pending .icon {
+  color: white;
+}
+
+.inProgress .statIcon {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
+}
+
+.inProgress .icon {
+  color: white;
+}
+
+.accepted .statIcon {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  box-shadow: 0 4px 15px rgba(67, 233, 123, 0.3);
+}
+
+.accepted .icon {
+  color: white;
+}
+
+.rejected .statIcon {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  box-shadow: 0 4px 15px rgba(250, 112, 154, 0.3);
+}
+
+.rejected .icon {
+  color: white;
+}
+
+.withdrawn .statIcon {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  box-shadow: 0 4px 15px rgba(168, 237, 234, 0.3);
+}
+
+.withdrawn .icon {
+  color: #6b7280;
+}
+
+/* Effet hover pour les icônes */
+.statCard:hover .icon {
+  transform: scale(1.1);
+}
+
+.statCard:hover .statIcon {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================================================
+   CONTENU DES STATISTIQUES
+============================================================================ */
+
+.statContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.statNumber {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+  margin: 0;
+  transition: all 0.3s ease;
+}
+
+.statCard.total .statNumber {
+  color: #3b82f6;
+}
+
+.statCard.pending .statNumber {
+  color: #f59e0b;
+}
+
+.statCard.inProgress .statNumber {
+  color: #3b82f6;
+}
+
+.statCard.accepted .statNumber {
+  color: #10b981;
+}
+
+.statCard.rejected .statNumber {
+  color: #ef4444;
+}
+
+.statCard.withdrawn .statNumber {
+  color: #6b7280;
+}
+
+.statLabel {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+/* ============================================================================
+   BARRES DE PROGRESSION
+============================================================================ */
+
+.statProgress {
+  width: 100%;
+  height: 6px;
+  background: #f1f5f9;
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+  margin-top: 0.5rem;
+}
+
+.progressBar {
+  height: 100%;
+  border-radius: 3px;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.statCard.total .progressBar {
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+}
+
+.statCard.pending .progressBar {
+  background: linear-gradient(90deg, #f59e0b, #d97706);
+}
+
+.statCard.inProgress .progressBar {
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+}
+
+.statCard.accepted .progressBar {
+  background: linear-gradient(90deg, #10b981, #059669);
+}
+
+.statCard.rejected .progressBar {
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+}
+
+.statCard.withdrawn .progressBar {
+  background: linear-gradient(90deg, #6b7280, #4b5563);
+}
+
+/* Effet de brillance sur les barres de progression */
+.progressBar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: translateX(-100%);
+  animation: progressShine 2s infinite;
+}
+
+@keyframes progressShine {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ============================================================================
+   ANIMATIONS ET MICRO-INTERACTIONS
+============================================================================ */
+
+/* Animation de chargement des statistiques */
+.statCard {
+  animation: fadeInUp 0.5s ease-out;
+  animation-fill-mode: both;
+}
+
+/* Délais d'animation pour le layout 3x3 */
+.mainStats .statCard:nth-child(1) { animation-delay: 0.1s; }
+.mainStats .statCard:nth-child(2) { animation-delay: 0.2s; }
+.mainStats .statCard:nth-child(3) { animation-delay: 0.3s; }
+.mainStats .statCard:nth-child(4) { animation-delay: 0.4s; }
+.mainStats .statCard:nth-child(5) { animation-delay: 0.5s; }
+.mainStats .statCard:nth-child(6) { animation-delay: 0.6s; }
+
+/* Délais pour les cartes additionnelles (recruteurs) */
+.additionalStats .statCard:nth-child(1) { animation-delay: 0.7s; }
+.additionalStats .statCard:nth-child(2) { animation-delay: 0.8s; }
+.additionalStats .statCard:nth-child(3) { animation-delay: 0.9s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation d'entrée pour les icônes */
+@keyframes iconPop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  80% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.statIcon .icon {
+  animation: iconPop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Animation pour les numéros qui comptent */
+.statNumber {
+  animation: countUp 1s ease-out;
+  animation-delay: 0.5s;
+  animation-fill-mode: both;
+}
+
+@keyframes countUp {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Effet de pulsation pour les statistiques importantes */
+.statCard.total .statNumber,
+.statCard.accepted .statNumber {
+  animation: pulseGlow 2s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% {
+    text-shadow: 0 0 5px currentColor;
+  }
+  100% {
+    text-shadow: 0 0 10px currentColor, 0 0 15px currentColor;
+  }
+}
+
+/* ============================================================================
+   EFFETS SPÉCIAUX ET TENDANCES
+============================================================================ */
+
+/* Effets spéciaux pour les statistiques élevées */
+.statCard:has(.statNumber[data-high="true"]) {
+  position: relative;
+}
+
+.statCard:has(.statNumber[data-high="true"])::after {
+  content: '🔥';
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 1rem;
+  animation: flame 1.5s infinite alternate;
+}
+
+@keyframes flame {
+  0% {
+    transform: scale(1) rotate(-5deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.1) rotate(5deg);
+    opacity: 1;
+  }
+}
+
+/* Indicateurs visuels pour les tendances */
+.statCard.trending-up::before {
+  background: linear-gradient(90deg, #10b981, #059669, #10b981);
+  background-size: 200% 100%;
+  animation: gradientShift 2s infinite;
+}
+
+.statCard.trending-down::before {
+  background: linear-gradient(90deg, #ef4444, #dc2626, #ef4444);
+  background-size: 200% 100%;
+  animation: gradientShift 2s infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN - ADAPTÉ AU LAYOUT 3x3
+============================================================================ */
+
+/* Tablettes - garde 3 colonnes mais réduit la taille */
+@media (max-width: 1200px) {
+  .mainStats {
+    grid-template-columns: repeat(3, 1fr);  /* Garde 3 colonnes */
+    gap: 1rem;
+  }
+
+  .additionalStats {
+    grid-template-columns: repeat(3, 1fr);  /* Garde 3 colonnes */
+    gap: 1rem;
+  }
+
+  .statCard {
+    padding: 1.5rem;
+  }
+
+  .statIcon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.75rem;
+  }
+
+  .icon {
+    font-size: 22px;
+  }
+
+  .statNumber {
+    font-size: 1.75rem;
+  }
+}
+
+/* Tablettes moyennes - passe à 2 colonnes */
+@media (max-width: 900px) {
+  .mainStats {
+    grid-template-columns: repeat(2, 1fr);  /* 2 colonnes pour les moyens écrans */
+    gap: 1rem;
+  }
+
+  .additionalStats {
+    grid-template-columns: repeat(2, 1fr);  /* 2 colonnes pour cohérence */
+    gap: 1rem;
+  }
+}
+
+/* Mobile - reste à 2 colonnes pour éviter cartes trop petites */
+@media (max-width: 768px) {
+  .statsContainer {
+    gap: 1.25rem;
+  }
+
+  .mainStats {
+    grid-template-columns: repeat(2, 1fr);  /* 2 colonnes sur mobile */
+    gap: 0.875rem;
+  }
+
+  .additionalStats {
+    grid-template-columns: repeat(2, 1fr);  /* 2 colonnes */
+    gap: 0.875rem;
+  }
+
+  .statCard {
+    padding: 1.25rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  .statIcon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .icon {
+    font-size: 20px;
+  }
+
+  .statNumber {
+    font-size: 1.5rem;
+  }
+
+  .statLabel {
+    font-size: 0.8rem;
+  }
+
+  .statProgress {
+    margin-top: 0.75rem;
+  }
+}
+
+/* Très petits écrans - 1 colonne */
+@media (max-width: 480px) {
+  .mainStats {
+    grid-template-columns: 1fr;  /* 1 colonne sur très petits écrans */
+  }
+
+  .additionalStats {
+    grid-template-columns: 1fr;  /* 1 colonne */
+  }
+
+  .statCard {
+    padding: 1rem;
+    flex-direction: row;
+    text-align: left;
+    gap: 1rem;
+  }
+
+  .statIcon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .icon {
+    font-size: 18px;
+  }
+
+  .statNumber {
+    font-size: 1.25rem;
+  }
+
+  .statLabel {
+    font-size: 0.75rem;
+  }
+}
+
+/* ============================================================================
+   AJUSTEMENTS POUR BIEN GÉRER 6 CARTES (STAGIAIRES)
+============================================================================ */
+
+/* Centrer la dernière ligne si nombre impair (pour recruteurs avec 5 cartes) */
+.mainStats .statCard:nth-child(5):last-child {
+  grid-column: 2;  /* Centrer la 5ème carte si elle est seule sur sa ligne */
+}
+
+/* ============================================================================
+   ÉTATS ET INTERACTIONS
+============================================================================ */
+
+/* Transition fluide pour tous les changements */
+.statCard * {
+  transition: all 0.3s ease;
+}
+
+/* Effet hover amélioré */
+.statCard:hover {
+  cursor: default;
+}
+
+.statCard:hover .statNumber {
+  transform: scale(1.05);
+}
+
+.statCard:hover .progressBar {
+  box-shadow: 0 0 10px currentColor;
+}
+
+/* Effet de loading pour les nouvelles données */
+.statsContainer.loading .statCard {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.statsContainer.loading .progressBar::after {
+  animation-duration: 1s;
+}
+
+/* ============================================================================
+   VERSION ALTERNATIVE AVEC COULEURS SUBTILES (OPTIONNEL)
+============================================================================ */
+
+.statIcon.subtle {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.total.subtle .icon { color: #667eea; }
+.pending.subtle .icon { color: #f59e0b; }
+.inProgress.subtle .icon { color: #3b82f6; }
+.accepted.subtle .icon { color: #10b981; }
+.rejected.subtle .icon { color: #ef4444; }
+.withdrawn.subtle .icon { color: #6b7280; }

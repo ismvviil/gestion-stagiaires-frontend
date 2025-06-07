@@ -1,0 +1,402 @@
+/* TopNavbar.module.css - Style professionnel pour gestion de stagiaires */
+
+.navbar {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 25%, #3b82f6 75%, #60a5fa 100%);
+  padding: 1rem 0;
+  box-shadow: 0 4px 25px rgba(30, 58, 138, 0.15);
+  position: relative;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  position: relative;
+}
+
+.logo {
+  position: relative;
+  display: block;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo:hover {
+  transform: scale(1.05) translateY(-1px);
+}
+
+.logoImg {
+  height: 42px;
+  width: auto;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.logoDefault {
+  opacity: 1;
+}
+
+.logoHover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.logo:hover .logoDefault {
+  opacity: 0;
+}
+
+.logo:hover .logoHover {
+  opacity: 1;
+}
+
+.navMenu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0.75rem;
+}
+
+.navItem {
+  position: relative;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  color: #f8fafc;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  font-size: 14px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navLink::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transition: left 0.6s ease;
+}
+
+.navLink:hover::before {
+  left: 100%;
+}
+
+.navLink:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(30, 58, 138, 0.3);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Styles spécifiques pour les icônes */
+.navIcon {
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.navLink:hover .navIcon {
+  transform: scale(1.15) rotate(5deg);
+}
+
+/* Style spécial pour le lien de vérification */
+.verifyLink {
+  background: linear-gradient(45deg, #059669, #10b981, #34d399);
+  color: white !important;
+  font-weight: 600;
+  position: relative;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.verifyLink:hover {
+  background: linear-gradient(45deg, #047857, #059669, #10b981);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+  border-color: rgba(52, 211, 153, 0.5);
+}
+
+.externalIcon {
+  font-size: 11px;
+  opacity: 0.9;
+  margin-left: 6px;
+  transition: all 0.3s ease;
+}
+
+.verifyLink:hover .externalIcon {
+  transform: translate(3px, -3px) rotate(10deg);
+  opacity: 1;
+}
+
+/* Style pour le bouton d'inscription */
+.registerBtn {
+  background: linear-gradient(45deg, #dc2626, #ef4444, #f87171);
+  color: white !important;
+  font-weight: 600;
+  border: 1px solid rgba(220, 38, 38, 0.3);
+}
+
+.registerBtn:hover {
+  background: linear-gradient(45deg, #b91c1c, #dc2626, #ef4444);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(220, 38, 38, 0.4);
+  border-color: rgba(239, 68, 68, 0.5);
+}
+
+/* Style pour le bouton de connexion */
+.navLink:nth-child(1) {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.navLink:nth-child(1):hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* =================================================================== */
+/* NOUVEAU: Styles pour le menu hamburger et la version mobile */
+/* =================================================================== */
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: #f8fafc;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  z-index: 1001;
+}
+
+.hamburger:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
+}
+
+.hamburgerIcon {
+  transition: all 0.3s ease;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  backdrop-filter: blur(2px);
+}
+
+/* Responsive pour tablettes et mobiles */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.75rem 0;
+  }
+  
+  .hamburger {
+    display: block;
+  }
+  
+  .navMenu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 6rem 2rem 2rem;
+    gap: 1rem;
+    box-shadow: -10px 0 40px rgba(30, 58, 138, 0.3);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+  }
+  
+  .navMenuOpen {
+    right: 0;
+  }
+  
+  .navItem {
+    width: 100%;
+    animation: slideInFromRight 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    animation-fill-mode: both;
+  }
+  
+  .navItem:nth-child(1) { animation-delay: 0.1s; }
+  .navItem:nth-child(2) { animation-delay: 0.15s; }
+  .navItem:nth-child(3) { animation-delay: 0.2s; }
+  .navItem:nth-child(4) { animation-delay: 0.25s; }
+  .navItem:nth-child(5) { animation-delay: 0.3s; }
+  
+  .navLink {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 16px 20px;
+    font-size: 16px;
+    border-radius: 12px;
+    margin-bottom: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navIcon {
+    font-size: 18px;
+    min-width: 20px;
+  }
+  
+  .navLink span {
+    font-weight: 500;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .logoImg {
+    height: 38px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navMenu {
+    width: 100vw;
+    right: -100vw;
+    padding: 5rem 1.5rem 2rem;
+  }
+  
+  .navMenuOpen {
+    right: 0;
+  }
+  
+  .navLink {
+    padding: 18px 24px;
+    font-size: 17px;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .logoImg {
+    height: 36px;
+  }
+  
+  .hamburger {
+    font-size: 1.4rem;
+  }
+}
+
+/* Nouvelles animations pour mobile */
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animation d'entrée */
+.fadeScale {
+  animation: fadeScale 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Animation pour les liens de navigation sur desktop */
+@media (min-width: 769px) {
+  .navItem {
+    animation: slideInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    animation-fill-mode: both;
+  }
+
+  .navItem:nth-child(1) { animation-delay: 0.1s; }
+  .navItem:nth-child(2) { animation-delay: 0.2s; }
+  .navItem:nth-child(3) { animation-delay: 0.3s; }
+  .navItem:nth-child(4) { animation-delay: 0.4s; }
+  .navItem:nth-child(5) { animation-delay: 0.5s; }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(40px) translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+}
+
+/* Effet de focus pour l'accessibilité */
+.navLink:focus,
+.hamburger:focus {
+  outline: 2px solid #fbbf24;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(251, 191, 36, 0.3);
+}
+
+/* Animation au chargement de la navbar */
+.navbar {
+  animation: slideDown 0.6s ease-out;
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Améliorations pour la version mobile du menu */
+@media (max-width: 768px) {
+  .verifyLink {
+    background: linear-gradient(45deg, #059669, #10b981, #34d399);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  }
+  
+  .registerBtn {
+    background: linear-gradient(45deg, #dc2626, #ef4444, #f87171);
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+    margin-top: 0.5rem;
+  }
+  
+  .navLink:hover {
+    transform: translateX(5px);
+    box-shadow: 0 6px 20px rgba(30, 58, 138, 0.2);
+  }
+}
